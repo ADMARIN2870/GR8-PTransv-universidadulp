@@ -6,7 +6,7 @@ package vista;
 
 import persistencia.AlumnoData;
 import persistencia.Conexion;
-import gr8.ptransv.universidadulp.Entidades.Alumno;
+import entidades.Alumno;
 import java.time.LocalDate;
 
 
@@ -28,10 +28,13 @@ public class GR8PTransvUniversidadulp {
         AlumnoData alumnoData = new AlumnoData(conexion);
 
         
-        Alumno nuevoAlumno = new Alumno(12345678, "Gómez", "Laura", LocalDate.of(1995, 6, 15), true);
+        Alumno nuevoAlumno = new Alumno(40722588, "Gómez", "Laura", LocalDate.of(1995, 6, 15), true);
 
-        
+        Alumno test=alumnoData.buscarAlumnoPorDni(nuevoAlumno.getDni());
+        if(!test.equals(nuevoAlumno)){
         alumnoData.guardarAlumno(nuevoAlumno);
+        }
+        
 
         
         System.out.println("Alumno guardado con éxito: " + nuevoAlumno.getIdAlumno());

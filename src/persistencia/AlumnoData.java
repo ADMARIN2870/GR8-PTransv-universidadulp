@@ -3,14 +3,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package persistencia;
-
-
-
 /**
  *
  * @author Adriana
  */
-import gr8.ptransv.universidadulp.Entidades.Alumno;
+import entidades.Alumno;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,8 +22,9 @@ public class AlumnoData {
     public AlumnoData() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-
+    
     public void guardarAlumno(Alumno alumno) {
+        
         String sql = "INSERT INTO alumno (dni, apellido, nombre, fechaNacimiento, estado) VALUES (?, ?, ?, ?, ?)";
         try {
             try (PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
