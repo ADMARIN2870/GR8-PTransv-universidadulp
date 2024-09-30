@@ -2,10 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
-package gr8.ptransv.universidadulp;
+package vista;
 
-import gr8.ptransv.universidadulp.AccesoADatos.AlumnoData;
-import gr8.ptransv.universidadulp.AccesoADatos.Conexion;
+import persistencia.AlumnoData;
+import persistencia.Conexion;
 import gr8.ptransv.universidadulp.Entidades.Alumno;
 import java.time.LocalDate;
 
