@@ -8,6 +8,8 @@ import persistencia.AlumnoData;
 import persistencia.Conexion;
 import entidades.Alumno;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -28,16 +30,20 @@ public class GR8PTransvUniversidadulp {
         AlumnoData alumnoData = new AlumnoData(conexion);
 
         
-        Alumno nuevoAlumno = new Alumno(40722588, "Gómez", "Laura", LocalDate.of(1995, 6, 15), true);
-
-        Alumno test=alumnoData.buscarAlumnoPorDni(nuevoAlumno.getDni());
-        if(!test.equals(nuevoAlumno)){
-        alumnoData.guardarAlumno(nuevoAlumno);
-        }
+        Alumno nuevoAlumno = new Alumno(7854269, "Velezques", "Marito", LocalDate.of(1995, 6, 15), true);
         
-
+        alumnoData.guardarAlumno(nuevoAlumno);
         
         System.out.println("Alumno guardado con éxito: " + nuevoAlumno.getIdAlumno());
+        
+        System.out.println(alumnoData.buscarAlumnoPorDni(nuevoAlumno.getDni()));
+        
+        List<Alumno>alumnos =alumnoData.obtenerAlumnos();
+        for(Alumno a: alumnos){
+            System.out.println(a);
+        }
+        
+       
     }
     
 }   
