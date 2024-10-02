@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
+
 package vista;
 
 import persistencia.AlumnoData;
@@ -11,16 +8,11 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-/**
- *
- * @author Adriana
- */
+
 public class GR8PTransvUniversidadulp {
 
 
-    /**
-     * @param args the command line arguments
-     */
+    
     public static void main(String[] args) {
         // TODO code application logic here
       Conexion conexion = new Conexion();
@@ -30,7 +22,7 @@ public class GR8PTransvUniversidadulp {
         AlumnoData alumnoData = new AlumnoData(conexion);
 
         
-        Alumno nuevoAlumno = new Alumno(26668376, "Marin", "Adriana", LocalDate.of(1978, 8, 07), true);
+        Alumno nuevoAlumno = new Alumno(43251625, "Santos", "Julieta", LocalDate.of(2001, 3, 18), true);
                
         alumnoData.guardarAlumno(nuevoAlumno);
         
