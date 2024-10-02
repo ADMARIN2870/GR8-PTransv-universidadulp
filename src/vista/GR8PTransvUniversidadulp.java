@@ -22,7 +22,7 @@ public class GR8PTransvUniversidadulp {
         AlumnoData alumnoData = new AlumnoData(conexion);
 
         
-        Alumno nuevoAlumno = new Alumno(43251625, "Santos", "Julieta", LocalDate.of(2001, 3, 18), true);
+        Alumno nuevoAlumno = new Alumno(37505200, "Martinez", "Matiasa", LocalDate.of(1993, 12, 22), true);
                
         alumnoData.guardarAlumno(nuevoAlumno);
         
