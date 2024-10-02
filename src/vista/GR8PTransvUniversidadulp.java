@@ -9,8 +9,6 @@ import persistencia.Conexion;
 import entidades.Alumno;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.List;
-import java.sql.SQLException;
 import java.util.Scanner;
 
 /**
@@ -32,7 +30,7 @@ public class GR8PTransvUniversidadulp {
         AlumnoData alumnoData = new AlumnoData(conexion);
 
         
-        Alumno nuevoAlumno = new Alumno(40722588, "Velezques", "Marito", LocalDate.of(1995, 6, 15), true);
+        Alumno nuevoAlumno = new Alumno(40722588, "Salonia", "Luca", LocalDate.of(1995, 6, 15), true);
                
         alumnoData.guardarAlumno(nuevoAlumno);
         
