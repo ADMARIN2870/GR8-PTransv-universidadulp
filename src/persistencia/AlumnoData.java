@@ -101,8 +101,8 @@ public class AlumnoData {
     return alumno;  // Devuelve el alumno encontrado o null si no se encontró
 }
 
-    public List<Alumno> obtenerAlumnos() {
-        List<Alumno> alumnos = new ArrayList<>();
+    public ArrayList<Alumno> obtenerAlumnos() {
+        ArrayList<Alumno> alumnos = new ArrayList<>();
         String sql = "SELECT * FROM alumno";
         try {
             try (PreparedStatement statement = connection.prepareStatement(sql)) {
