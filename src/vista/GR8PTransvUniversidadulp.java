@@ -14,7 +14,7 @@ public class GR8PTransvUniversidadulp {
 
     
     public static void main(String[] args) {
-        // TODO code application logic here
+        
       Conexion conexion = new Conexion();
       Scanner leer = new Scanner(System.in);
 
