@@ -10,7 +10,6 @@ package persistencia;
 import entidades.Alumno;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.List;
 
 public class AlumnoData {
     private final Connection connection;
