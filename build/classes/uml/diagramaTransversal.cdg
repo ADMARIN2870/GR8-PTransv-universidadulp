@@ -2,7 +2,11 @@
 
 <ClassDiagram name="Multi-file class diagram">
   <ClassDiagramComponents>
+<<<<<<< HEAD
     <Class name="Alumno" package="entidades" visibility="public" xPosition="66.0" yPosition="297.0">
+=======
+    <Class name="Alumno" package="entidades" visibility="public" xPosition="42.0" yPosition="275.0">
+>>>>>>> 404261fe209f7022cbb2ebfb7ceddef4e2425dbd
       <Fields>
         <Field name="idAlumno" type="int" visibility="private"/>
         <Field name="dni" type="int" visibility="private"/>
@@ -57,7 +61,7 @@
         <Method name="toString" returnType="String" visibility="public"/>
       </Methods>
     </Class>
-    <Class name="Inscripcion" package="entidades" visibility="public" xPosition="969.0" yPosition="107.0">
+    <Class name="Inscripcion" package="entidades" visibility="public" xPosition="808.0" yPosition="90.0">
       <Fields>
         <Field name="idInscripto" type="int" visibility="private"/>
         <Field name="nota" type="double" visibility="private"/>
@@ -97,7 +101,11 @@
         <Method name="toString" returnType="String" visibility="public"/>
       </Methods>
     </Class>
+<<<<<<< HEAD
     <Class name="Materia" package="" visibility="public" xPosition="126.0" yPosition="80.0">
+=======
+    <Class name="Materia" package="" visibility="public" xPosition="175.0" yPosition="70.0">
+>>>>>>> 404261fe209f7022cbb2ebfb7ceddef4e2425dbd
       <Fields>
         <Field name="idMateria" type="int" visibility="private"/>
         <Field name="nombreMateria" type="String" visibility="private"/>
@@ -116,8 +124,12 @@
     </Class>
   </ClassDiagramComponents>
   <ClassDiagramRelations>
+<<<<<<< HEAD
     <HasRelation name="alumno" source="entidades.Inscripcion" target="entidades.Alumno" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+=======
+>>>>>>> 404261fe209f7022cbb2ebfb7ceddef4e2425dbd
     <HasRelation name="tiene" source="entidades.Inscripcion" target="Materia" type="Aggregation" sourceCardinality="0..1" targetCardinality="1..1"/>
     <UseRelation source="entidades.Inscripcion" target="entidades.Alumno" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="alumno" source="entidades.Inscripcion" target="entidades.Alumno" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
   </ClassDiagramRelations>
 </ClassDiagram>

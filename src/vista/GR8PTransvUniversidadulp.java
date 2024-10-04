@@ -4,6 +4,9 @@
  */
 
 /*
+=======
+
+>>>>>>> 404261fe209f7022cbb2ebfb7ceddef4e2425dbd
 package vista;
 
 
@@ -16,6 +19,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 
+<<<<<<< HEAD
 /**
  *
  * @author Adriana
@@ -32,6 +36,14 @@ public class GR8PTransvUniversidadulp {
   
     public static void main(String[] args) {
        
+=======
+public class GR8PTransvUniversidadulp {
+
+
+    
+    public static void main(String[] args) {
+        
+>>>>>>> 404261fe209f7022cbb2ebfb7ceddef4e2425dbd
       Conexion conexion = new Conexion();
       Scanner leer = new Scanner(System.in);
 
@@ -39,7 +51,7 @@ public class GR8PTransvUniversidadulp {
         AlumnoData alumnoData = new AlumnoData(conexion);
 
         
-        Alumno nuevoAlumno = new Alumno(26668376, "Marin", "Adriana", LocalDate.of(1978, 8, 07), true);
+        Alumno nuevoAlumno = new Alumno(37505200, "Lozano", "Nelson", LocalDate.of(2005, 11, 20), true);
                
         alumnoData.guardarAlumno(nuevoAlumno);
         
