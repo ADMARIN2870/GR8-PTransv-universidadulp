@@ -4,29 +4,24 @@
  */
 package entidades;
 
-/**
- *
- * @author Adriana
- */
 public class Materia {
     private int idMateria;
-    private String nombreMateria;
-    private int año;
+    private String nombre_materia;
+    private int anio;
     private boolean estado;
 
-    public Materia(int idMateria, String nombreMateria, int año, boolean estado) {
-        this.idMateria = idMateria;
-        this.nombreMateria = nombreMateria;
-        this.año = año;
+    // Constructor vacío
+    public Materia() {
+    }
+
+    // Constructor con parámetros
+    public Materia(String nombre_materia, int anio, boolean estado) {
+        this.nombre_materia = nombre_materia;
+        this.anio = anio;
         this.estado = estado;
     }
 
-    public Materia(String nombreMateria, int año, boolean estado) {
-        this.nombreMateria = nombreMateria;
-        this.año = año;
-        this.estado = estado;
-    }
-
+    // Métodos getter y setter para cada atributo
     public int getIdMateria() {
         return idMateria;
     }
@@ -35,20 +30,20 @@ public class Materia {
         this.idMateria = idMateria;
     }
 
-    public String getNombreMateria() {
-        return nombreMateria;
+    public String getNombre_materia() {
+        return nombre_materia;
     }
 
-    public void setNombreMateria(String nombreMateria) {
-        this.nombreMateria = nombreMateria;
+    public void setNombre_materia(String nombre_materia) {
+        this.nombre_materia = nombre_materia;
     }
 
-    public int getAño() {
-        return año;
+    public int getAnio() {
+        return anio;
     }
 
-    public void setAño(int año) {
-        this.año = año;
+    public void setAnio(int anio) {
+        this.anio = anio;
     }
 
     public boolean isEstado() {
@@ -61,7 +56,14 @@ public class Materia {
 
     @Override
     public String toString() {
-        return "Materia{" + "idMateria=" + idMateria + ", nombreMateria=" + nombreMateria + ", a\u00f1o=" + año + '}';
+        return "Materia{" + "idMateria=" + idMateria + ", nombre_materia='" + nombre_materia + '\'' + ", anio=" + anio + ", estado=" + estado + '}';
     }
-   }
-    
+
+    public void setNombre_Materia(String string) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public void setanio(int aInt) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+}

@@ -10,7 +10,6 @@ package persistencia;
 import entidades.Alumno;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.List;
 
 public class AlumnoData {
     private final Connection connection;
@@ -167,5 +166,9 @@ public class AlumnoData {
         System.out.println("Error al eliminar el alumno: " + e.getMessage());
     }
 }
+
+    public Alumno buscarAlumnoPorNombreApellido(String nombreAlumno, String apellidoAlumno) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 
 }

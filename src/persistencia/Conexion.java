@@ -19,10 +19,14 @@ import javax.swing.JOptionPane;
  */
 public class Conexion {
     private static final String URL="jdbc:mariadb://localhost/";
-    private static final String DB="gp8_tranversal";
+    private static final String DB="gp8_transversal";
     private static final String USUARIO="root";
     private static final String PASSWORD="";
     private static Connection connection;
+
+    public static Object getInstancia() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
     public Conexion(){}
     

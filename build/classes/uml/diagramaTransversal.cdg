@@ -2,7 +2,7 @@
 
 <ClassDiagram name="Multi-file class diagram">
   <ClassDiagramComponents>
-    <Class name="Alumno" package="entidades" visibility="public" xPosition="142.0" yPosition="326.0">
+    <Class name="Alumno" package="entidades" visibility="public" xPosition="66.0" yPosition="297.0">
       <Fields>
         <Field name="idAlumno" type="int" visibility="private"/>
         <Field name="dni" type="int" visibility="private"/>
@@ -97,7 +97,7 @@
         <Method name="toString" returnType="String" visibility="public"/>
       </Methods>
     </Class>
-    <Class name="Materia" package="" visibility="public" xPosition="345.0" yPosition="107.0">
+    <Class name="Materia" package="" visibility="public" xPosition="126.0" yPosition="80.0">
       <Fields>
         <Field name="idMateria" type="int" visibility="private"/>
         <Field name="nombreMateria" type="String" visibility="private"/>
@@ -116,8 +116,8 @@
     </Class>
   </ClassDiagramComponents>
   <ClassDiagramRelations>
-    <HasRelation name="tiene" source="entidades.Inscripcion" target="Materia" type="Aggregation" sourceCardinality="0..1" targetCardinality="1..1"/>
     <HasRelation name="alumno" source="entidades.Inscripcion" target="entidades.Alumno" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="tiene" source="entidades.Inscripcion" target="Materia" type="Aggregation" sourceCardinality="0..1" targetCardinality="1..1"/>
     <UseRelation source="entidades.Inscripcion" target="entidades.Alumno" sourceCardinality="1..1" targetCardinality="1..1"/>
   </ClassDiagramRelations>
 </ClassDiagram>
