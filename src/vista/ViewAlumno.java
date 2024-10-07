@@ -212,6 +212,7 @@ public class ViewAlumno extends javax.swing.JInternalFrame {
     private void jbNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNuevoActionPerformed
         // TODO add your handling code here:
         jbGuardar.setEnabled(true);
+        jtfDni.setText("");
     }//GEN-LAST:event_jbNuevoActionPerformed
 
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
@@ -220,8 +221,9 @@ public class ViewAlumno extends javax.swing.JInternalFrame {
             int dni = Integer.parseInt(jtfDni.getText());
             String apellido = jtfApellido.getText();
             String nombre = jtfNombre.getText();
-            LocalDate fecha=jdFecha.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-            boolean estado;
+            try{
+                LocalDate fecha=jdFecha.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                 boolean estado;
              if (jrbEstado.isSelected()) {
                     estado=true;
                 } else {
@@ -242,9 +244,12 @@ public class ViewAlumno extends javax.swing.JInternalFrame {
             } else{
                 JOptionPane.showMessageDialog(this, "Los campos de texto no deben esta vacios");
             }
+            }catch(NullPointerException e){
+                JOptionPane.showMessageDialog(this, "La fecha no debe estar vacia", "Error", JOptionPane.ERROR_MESSAGE);
+            }
            
         }catch(NumberFormatException e){
-            JOptionPane.showMessageDialog(this, "Codigo y precio solo reciben valores numericos", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Dni solo reciben valores numericos", "Error", JOptionPane.ERROR_MESSAGE);
         
         }
         jbGuardar.setEnabled(false);
@@ -274,7 +279,7 @@ public class ViewAlumno extends javax.swing.JInternalFrame {
             jtfApellido.setText(apellido);
             Date fechaPars=Date.from(fecha.atStartOfDay(ZoneId.systemDefault()).toInstant());
             jdFecha.setDate(fechaPars);
-        }catch(NullPointerException e){
+        }catch (NullPointerException e){
              JOptionPane.showMessageDialog(this, "El alumno no existe "); 
           }
         
