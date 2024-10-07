@@ -22,6 +22,7 @@ public class ViewMenuPrincipal extends javax.swing.JFrame {
         jmiMaterias = new javax.swing.JMenuItem();
         jmAdministracion = new javax.swing.JMenu();
         jmiInscripcion = new javax.swing.JMenuItem();
+        jmiNotas = new javax.swing.JMenuItem();
         jmConsultas = new javax.swing.JMenu();
         jmiConsultas = new javax.swing.JMenuItem();
         jmSalir = new javax.swing.JMenu();
@@ -68,6 +69,9 @@ public class ViewMenuPrincipal extends javax.swing.JFrame {
         jmiInscripcion.setText("Inscripciones");
         jmAdministracion.add(jmiInscripcion);
 
+        jmiNotas.setText("Cargar/Modificar Notas");
+        jmAdministracion.add(jmiNotas);
+
         jmbGeneral.add(jmAdministracion);
 
         jmConsultas.setText("Consultas");
@@ -78,6 +82,11 @@ public class ViewMenuPrincipal extends javax.swing.JFrame {
         jmbGeneral.add(jmConsultas);
 
         jmSalir.setText("Salir");
+        jmSalir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jmSalirMouseClicked(evt);
+            }
+        });
         jmbGeneral.add(jmSalir);
 
         setJMenuBar(jmbGeneral);
@@ -98,17 +107,28 @@ public class ViewMenuPrincipal extends javax.swing.JFrame {
 
     private void jmiAlumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiAlumnosActionPerformed
         // TODO add your handling code here:
+       jdpVistaPrincipal.removeAll();
+       jdpVistaPrincipal.repaint();
+       ViewAlumno internalAlumno = new ViewAlumno();
+       internalAlumno.setVisible(true);
+       jdpVistaPrincipal.add(internalAlumno);
+       jdpVistaPrincipal.moveToFront(internalAlumno);
     }//GEN-LAST:event_jmiAlumnosActionPerformed
 
     private void jmiMateriasMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jmiMateriasMousePressed
         // TODO add your handling code here:
-        jdpVistaPrincipal.removeAll();
+       jdpVistaPrincipal.removeAll();
        jdpVistaPrincipal.repaint();
        ViewMateria internalMateria = new ViewMateria();
        internalMateria.setVisible(true);
        jdpVistaPrincipal.add(internalMateria);
        jdpVistaPrincipal.moveToFront(internalMateria);
     }//GEN-LAST:event_jmiMateriasMousePressed
+
+    private void jmSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jmSalirMouseClicked
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_jmSalirMouseClicked
 
     /**
      * @param args the command line arguments
@@ -157,5 +177,6 @@ public class ViewMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jmiConsultas;
     private javax.swing.JMenuItem jmiInscripcion;
     private javax.swing.JMenuItem jmiMaterias;
+    private javax.swing.JMenuItem jmiNotas;
     // End of variables declaration//GEN-END:variables
 }

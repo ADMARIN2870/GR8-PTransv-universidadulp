@@ -43,7 +43,7 @@ public class ViewAlumno extends javax.swing.JInternalFrame {
         jtfDni = new javax.swing.JTextField();
         jtfApellido = new javax.swing.JTextField();
         jtfNombre = new javax.swing.JTextField();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jdFecha = new com.toedter.calendar.JDateChooser();
 
         jLabel1.setText("Alumnos");
 
@@ -111,8 +111,8 @@ public class ViewAlumno extends javax.swing.JInternalFrame {
                                                 .addGap(47, 47, 47)
                                                 .addComponent(jrbEstado))
                                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addGap(18, 18, 18)
-                                                .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(jdFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                                 .addGap(52, 52, 52))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -151,7 +151,7 @@ public class ViewAlumno extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6)
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jdFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(40, 40, 40)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbNuevo)
@@ -184,7 +184,6 @@ public class ViewAlumno extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton5;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -197,6 +196,7 @@ public class ViewAlumno extends javax.swing.JInternalFrame {
     private javax.swing.JButton jbGuardar;
     private javax.swing.JButton jbNuevo;
     private javax.swing.JButton jbSalir;
+    private com.toedter.calendar.JDateChooser jdFecha;
     private javax.swing.JRadioButton jrbEstado;
     private javax.swing.JTextField jtfApellido;
     private javax.swing.JTextField jtfDni;
