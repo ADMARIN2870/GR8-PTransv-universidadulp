@@ -1,12 +1,4 @@
-/* Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 
-
-/**
- *
- * @author Adriana
- */
 
 package persistencia;
 
@@ -20,6 +12,10 @@ public class MateriaData {
 
     public MateriaData(Conexion conexion) {
         connection = Conexion.getConexion();
+    }
+
+    public MateriaData() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     // Método para guardar una nueva materia en la base de datos

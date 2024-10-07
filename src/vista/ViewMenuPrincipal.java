@@ -55,9 +55,9 @@ public class ViewMenuPrincipal extends javax.swing.JFrame {
         jmMateria.setText("Materia");
 
         jmiMaterias.setText("Formulario de Materias");
-        jmiMaterias.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                jmiMateriasMousePressed(evt);
+        jmiMaterias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiMateriasActionPerformed(evt);
             }
         });
         jmMateria.add(jmiMaterias);
@@ -120,16 +120,6 @@ public class ViewMenuPrincipal extends javax.swing.JFrame {
        jdpVistaPrincipal.moveToFront(internalAlumno);
     }//GEN-LAST:event_jmiAlumnosActionPerformed
 
-    private void jmiMateriasMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jmiMateriasMousePressed
-        // TODO add your handling code here:
-       jdpVistaPrincipal.removeAll();
-       jdpVistaPrincipal.repaint();
-       ViewMateria internalMateria = new ViewMateria();
-       internalMateria.setVisible(true);
-       jdpVistaPrincipal.add(internalMateria);
-       jdpVistaPrincipal.moveToFront(internalMateria);
-    }//GEN-LAST:event_jmiMateriasMousePressed
-
     private void jmSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jmSalirMouseClicked
         // TODO add your handling code here:
         dispose();
@@ -144,6 +134,15 @@ public class ViewMenuPrincipal extends javax.swing.JFrame {
        jdpVistaPrincipal.add(internalNotas);
        jdpVistaPrincipal.moveToFront(internalNotas);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jmiMateriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiMateriasActionPerformed
+       jdpVistaPrincipal.removeAll();
+       jdpVistaPrincipal.repaint();
+       ViewMateria internalMateria = new ViewMateria();
+       internalMateria.setVisible(true);
+       jdpVistaPrincipal.add(internalMateria);
+       jdpVistaPrincipal.moveToFront(internalMateria);
+    }//GEN-LAST:event_jmiMateriasActionPerformed
 
     /**
      * @param args the command line arguments

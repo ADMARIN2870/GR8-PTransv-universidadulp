@@ -29,7 +29,7 @@
                 <Property name="text" type="java.lang.String" value="Formulario de Materias"/>
               </Properties>
               <Events>
-                <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jmiMateriasMousePressed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmiMateriasActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>

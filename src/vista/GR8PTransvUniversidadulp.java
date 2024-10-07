@@ -1,11 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
+
+
+
 
 /*
-=======
-
 >>>>>>> 404261fe209f7022cbb2ebfb7ceddef4e2425dbd
 package vista;
 
@@ -84,10 +81,7 @@ import entidades.Materia;
 import java.util.List;
 import java.util.Scanner;
 
-/**
- *
- * @author Adriana
- */
+
 /*
 public class GR8PTransvUniversidadulp {
 
@@ -128,10 +122,10 @@ public class GR8PTransvUniversidadulp {
                 System.out.println("Materia eliminada con éxito: " + m.getIdMateria());
             }
         }
-    }
+  }
 }
-*/
 
+*/
 package vista;
 
 import persistencia.InscripcionData;
@@ -143,10 +137,9 @@ import entidades.Materia;
 import java.util.List;
 import java.util.Scanner;
 
-/**
- *
- * @author Adriana
- */
+
+
+
 public class GR8PTransvUniversidadulp {
 
     public static void main(String[] args) {
