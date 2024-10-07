@@ -8,8 +8,8 @@ import persistencia.MateriaData;
 
 public class ViewMateria extends javax.swing.JInternalFrame {
     
-//    private MateriaData matData =new MateriaData();
-//    private Materia mat =null;
+    private MateriaData matData =new MateriaData();
+    private Materia mat =null;
 
    
     public ViewMateria() {
@@ -167,37 +167,37 @@ public class ViewMateria extends javax.swing.JInternalFrame {
 
     private void jbNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNuevoActionPerformed
         
-//        limpiar();
-//        mat=null;
+       limpiar();
+       mat=null;
     }//GEN-LAST:event_jbNuevoActionPerformed
 
     private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
         
         
-//        try{
-//        Integer codigo = Integer.parseInt(jtfCodigo.getText());
-//        mat = matData.buscarMateria(codigo);
-//        if(mat!=null){
-//            
-//            jtfNombre.setText(mat.getNombre_materia());
-//            Integer.parseInt(jtfAño.getText());
-//            jrbEstado.setSelected(mat.isEstado());         
-//            }        
-//        
-//        }catch (NumberFormatException ex){
-//        JOptionPane.showMessageDialog(this, "Tiene que ingresar un numero valido");
-//        }
-//            
+        try{
+        Integer codigo = Integer.parseInt(jtfCodigo.getText());
+        mat = matData.buscarMateria(codigo);
+        if(mat!=null){
+            
+            jtfNombre.setText(mat.getNombre_materia());   
+            jtfAño.setText(String.valueOf(mat.getAnio()));
+            jrbEstado.setSelected(mat.isEstado());         
+            }        
+        
+        }catch (NumberFormatException ex){
+        JOptionPane.showMessageDialog(this, "Tiene que ingresar un numero valido");
+        }
+            
         
     }//GEN-LAST:event_jbBuscarActionPerformed
     
-//    private void limpiar (){
-//    jtfCodigo.setText("");
-//    jtfNombre.setText("");
-//    jtfAño.setText("");
-//    jrbEstado.setSelected(true);
+    private void limpiar (){
+    jtfCodigo.setText("");
+    jtfNombre.setText("");
+    jtfAño.setText("");
+    jrbEstado.setSelected(true);
        
-  //  }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;

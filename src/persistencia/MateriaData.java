@@ -8,14 +8,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MateriaData {
-    private final Connection connection;
+    
+    private Connection connection = Conexion.getConexion();
 
     public MateriaData(Conexion conexion) {
         connection = Conexion.getConexion();
     }
 
     public MateriaData() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+       
     }
 
     // Método para guardar una nueva materia en la base de datos
