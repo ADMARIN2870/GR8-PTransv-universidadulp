@@ -7,6 +7,7 @@ public class ViewMenuPrincipal extends javax.swing.JFrame {
     
     public ViewMenuPrincipal() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
    
@@ -37,7 +38,7 @@ public class ViewMenuPrincipal extends javax.swing.JFrame {
         );
         jdpVistaPrincipalLayout.setVerticalGroup(
             jdpVistaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 397, Short.MAX_VALUE)
+            .addGap(0, 544, Short.MAX_VALUE)
         );
 
         jmAlumno.setText("Alumno");

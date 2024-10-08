@@ -6,6 +6,7 @@ import entidades.Materia;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 public class MateriaData {
     
@@ -128,7 +129,23 @@ public class MateriaData {
         return materias;
     }
 
-    public Materia buscarMateriaPorNombre(String nombreMateria) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+     public boolean materiaExiste(String nombreMateria, int año){
+        boolean existencia=true;
+        
+        String sql ="SELECT nombre_materia, año FROM materia;";
+        try{
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                 if(rs.getString("nombre_materia").equals(nombreMateria)&&rs.getInt("año")==año){
+                    existencia=false;
+                 }
+            }
+            ps.close();
+        
+        }catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla materia " + ex.getMessage());
+        }
+        return existencia;
     }
 }
