@@ -1,12 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-
-/**
- *
- * @author Adriana
- */
 package persistencia;
 
 import entidades.Alumno;
@@ -15,18 +6,35 @@ import entidades.Materia;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import static persistencia.Conexion.getConexion;
 
 public class InscripcionData {
     private final Connection connection;
     private MateriaData matData;
     private AlumnoData aluData;
 
+    // Constructor principal que recibe una conexión y crea instancias de MateriaData y AlumnoData
     public InscripcionData(Conexion conexion) {
         connection = Conexion.getConexion();
         matData = new MateriaData(conexion);
         aluData = new AlumnoData(conexion);
     }
 
+    // Constructor vacío implementado (si es necesario)
+    public InscripcionData() {
+        this.connection = Conexion.getConexion(); // Inicializa la conexión
+        this.matData = new MateriaData((Conexion) getConexion()); // Inicializa MateriaData
+        this.aluData = new AlumnoData((Conexion) getConexion()); // Inicializa AlumnoData
+    }
+
+    // Constructor con parámetros (si necesitas usarlo)
+    public InscripcionData(Conexion conexion, MateriaData materiaData, AlumnoData alumnoData) {
+        this.connection = getConexion();
+        this.matData = materiaData;
+        this.aluData = alumnoData;
+    }
+
+    // Método para guardar una inscripción en la base de datos
     public void guardarInscripcion(Inscripcion insc) {
         String sql = "INSERT INTO inscripcion (idAlumno, idMateria, nota) VALUES (?, ?, ?)";
         try {
@@ -46,6 +54,7 @@ public class InscripcionData {
         }
     }
 
+    // Método para obtener todas las inscripciones
     public List<Inscripcion> obtenerInscripciones() {
         List<Inscripcion> inscripciones = new ArrayList<>();
         String sql = "SELECT * FROM inscripcion";
@@ -59,7 +68,7 @@ public class InscripcionData {
                     Materia materia = matData.buscarMateria(resultSet.getInt("idMateria"));
                     inscripcion.setAlumno(alumno);
                     inscripcion.setMateria(materia);
-                    inscripcion.setNota((int) resultSet.getDouble("nota"));
+                    inscripcion.setNota(resultSet.getDouble("nota"));
                     inscripciones.add(inscripcion);
                 }
             }
@@ -69,6 +78,7 @@ public class InscripcionData {
         return inscripciones;
     }
 
+    // Método para obtener inscripciones de un alumno específico
     public List<Inscripcion> obtenerInscripcionesPorAlumno(int idAlumno) {
         List<Inscripcion> inscripciones = new ArrayList<>();
         String sql = "SELECT * FROM inscripcion WHERE idAlumno = ?";
@@ -83,7 +93,7 @@ public class InscripcionData {
                     Materia materia = matData.buscarMateria(resultSet.getInt("idMateria"));
                     inscripcion.setAlumno(alumno);
                     inscripcion.setMateria(materia);
-                    inscripcion.setNota((int) resultSet.getDouble("nota"));
+                    inscripcion.setNota(resultSet.getDouble("nota"));
                     inscripciones.add(inscripcion);
                 }
             }
@@ -93,6 +103,7 @@ public class InscripcionData {
         return inscripciones;
     }
 
+    // Método para obtener materias cursadas por un alumno
     public List<Materia> obtenerMateriasCursadas(int idAlumno) {
         List<Materia> materias = new ArrayList<>();
         String sql = "SELECT m.* FROM materia m JOIN inscripcion i ON m.idMateria = i.idMateria WHERE i.idAlumno = ?";
@@ -115,6 +126,7 @@ public class InscripcionData {
         return materias;
     }
 
+    // Método para obtener materias NO cursadas por un alumno
     public List<Materia> obtenerMateriasNOCursadas(int idAlumno) {
         List<Materia> materias = new ArrayList<>();
         String sql = "SELECT * FROM materia WHERE idMateria NOT IN (SELECT idMateria FROM inscripcion WHERE idAlumno = ?)";
@@ -137,6 +149,7 @@ public class InscripcionData {
         return materias;
     }
 
+    // Método para borrar una inscripción
     public void borrarInscripcionMateriaAlumno(int idAlumno, int idMateria) {
         String sql = "DELETE FROM inscripcion WHERE idAlumno = ? AND idMateria = ?";
         try {
@@ -150,6 +163,7 @@ public class InscripcionData {
         }
     }
 
+    // Método para actualizar la nota de una inscripción
     public void actualizarNota(int idAlumno, int idMateria, double nota) {
         String sql = "UPDATE inscripcion SET nota = ? WHERE idAlumno = ? AND idMateria = ?";
         try {
@@ -164,7 +178,33 @@ public class InscripcionData {
         }
     }
 
+    // Método para obtener alumnos inscritos en una materia específica
     public List<Alumno> obtenerAlumnosXMateria(int idMateria) {
+        List<Alumno> alumnos = new ArrayList<>();
+        String sql = "SELECT a.* FROM alumno a JOIN inscripcion i ON a.idAlumno = i.idAlumno WHERE i.idMateria = ?";
+        try {
+            try (PreparedStatement statement = connection.prepareStatement(sql)) {
+                statement.setInt(1, idMateria);
+                ResultSet resultSet = statement.executeQuery();
+                while (resultSet.next()) {
+                    Alumno alumno = new Alumno();
+                    alumno.setIdAlumno(resultSet.getInt("idAlumno"));
+                    alumno.setDni(resultSet.getInt("dni"));
+                    alumno.setApellido(resultSet.getString("apellido"));
+                    alumno.setNombre(resultSet.getString("nombre"));
+                    alumno.setFechaNacimiento(resultSet.getDate("fechaNacimiento").toLocalDate());
+                    alumno.setEstado(resultSet.getBoolean("estado"));
+                    alumnos.add(alumno);
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al obtener alumnos por materia: " + e.getMessage());
+        }
+        return alumnos;
+    }
+
+    // Método obtenerAlumnosxMateria ya implementado
+    public List<Alumno> obtenerAlumnosxMateria(int idMateria) {
         List<Alumno> alumnos = new ArrayList<>();
         String sql = "SELECT a.* FROM alumno a JOIN inscripcion i ON a.idAlumno = i.idAlumno WHERE i.idMateria = ?";
         try {

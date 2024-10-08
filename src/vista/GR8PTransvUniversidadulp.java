@@ -1,216 +1,87 @@
-
-
-
-
-/*
->>>>>>> 404261fe209f7022cbb2ebfb7ceddef4e2425dbd
 package vista;
 
-
-
+import entidades.*;
+import java.util.List;
 import persistencia.AlumnoData;
 import persistencia.Conexion;
-import entidades.Alumno;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Scanner;
-
-
-<<<<<<< HEAD
-/**
- *
- * @author Adriana
- */
-/*
-public class GR8PTransvUniversidadulp {
-
-/*
- 
-    /**
-     * @param args the command line arguments
-     */
-    /*
-  
-    public static void main(String[] args) {
-       
-=======
-public class GR8PTransvUniversidadulp {
-
-
-    
-    public static void main(String[] args) {
-        
->>>>>>> 404261fe209f7022cbb2ebfb7ceddef4e2425dbd
-      Conexion conexion = new Conexion();
-      Scanner leer = new Scanner(System.in);
-
-       
-        AlumnoData alumnoData = new AlumnoData(conexion);
-
-        
-        Alumno nuevoAlumno = new Alumno(37505200, "Lozano", "Nelson", LocalDate.of(2005, 11, 20), true);
-               
-        alumnoData.guardarAlumno(nuevoAlumno);
-        
-        System.out.println("Alumno guardado con éxito: " + nuevoAlumno.getIdAlumno());
-        System.out.println("Alumno por dni\n"+alumnoData.buscarAlumnoPorDni(nuevoAlumno.getDni()));
-        
-        ArrayList<Alumno>alumnos =alumnoData.obtenerAlumnos();
-        System.out.println("Lista completa de alumnos");
-        for(Alumno a: alumnos){
-            System.out.println(a);
-        }
-        System.out.println("Presione 's' Si desea eliminar todos los alumnos");
-        
-        String s = leer.nextLine();
-        if(s.equalsIgnoreCase("s")){
-            
-            for(Alumno a: alumnos){
-                
-                alumnoData.eliminarAlumnoPorId(a.getIdAlumno());
-            }
-        }
-        }  
-
-
-package vista;
-
-import persistencia.MateriaData;
-import persistencia.Conexion;
-import entidades.Materia;
-import java.util.List;
-import java.util.Scanner;
-
-
-/*
-public class GR8PTransvUniversidadulp {
-
-    public static void main(String[] args) {
-        Conexion conexion = new Conexion();
-        Scanner leer = new Scanner(System.in);
-
-        
-        MateriaData materiaData = new MateriaData(conexion);
-
-        
-        Materia nuevaMateria = new Materia("Matemáticas", 2024, true);
-        materiaData.guardarMateria(nuevaMateria);
-
-        
-        System.out.println("Materia guardada con éxito: " + nuevaMateria.getIdMateria());
-
-        
-        System.out.println("Ingrese el ID de la materia a buscar:");
-        int idMateria = leer.nextInt();
-        Materia materiaEncontrada = materiaData.buscarMateria(idMateria);
-        System.out.println("Materia encontrada: " + materiaEncontrada);
-
-        
-        List<Materia> materias = materiaData.listarMaterias();
-        System.out.println("Lista completa de materias:");
-        for (Materia m : materias) {
-            System.out.println(m);
-        }
-
-        
-        System.out.println("Presione 's' si desea eliminar todas las materias");
-        leer.nextLine(); 
-        String s = leer.nextLine();
-        if (s.equalsIgnoreCase("s")) {
-            for (Materia m : materias) {
-                materiaData.eliminarMateria(m.getIdMateria());
-                System.out.println("Materia eliminada con éxito: " + m.getIdMateria());
-            }
-        }
-  }
-}
-
-*/
-package vista;
-
 import persistencia.InscripcionData;
-import persistencia.Conexion;
-import entidades.Alumno;
-import entidades.Inscripcion;
-import entidades.Materia;
-
-import java.util.List;
-import java.util.Scanner;
-
-
-
+import persistencia.MateriaData;
 
 public class GR8PTransvUniversidadulp {
-
     public static void main(String[] args) {
+        // 1. Establecer la conexión a la base de datos
         Conexion conexion = new Conexion();
-        Scanner leer = new Scanner(System.in);
 
-        // Instanciar la clase InscripcionData para trabajar con las inscripciones
-        InscripcionData inscripcionData = new InscripcionData(conexion);
+        // Verificar si la conexión se ha establecido correctamente
+        if (conexion != null) {
+            System.out.println("Conexión exitosa a la base de datos.");
 
-        // Guardar una nueva inscripción
-        System.out.println("Ingrese el ID del alumno para inscribir:");
-        int idAlumno = leer.nextInt();
-        System.out.println("Ingrese el ID de la materia:");
-        int idMateria = leer.nextInt();
-        Inscripcion nuevaInscripcion = new Inscripcion(idAlumno, idMateria, 0.0);
-        inscripcionData.guardarInscripcion(nuevaInscripcion);
-        System.out.println("Inscripción guardada con éxito!");
+            // Crear las instancias de los objetos Data (gestión de alumnos, materias, inscripciones)
+            AlumnoData alumnoData = new AlumnoData(conexion);
+            MateriaData materiaData = new MateriaData(conexion);
+            InscripcionData inscripcionData = new InscripcionData(conexion, materiaData, alumnoData);
 
-        // Listar todas las inscripciones
-        List<Inscripcion> inscripciones = inscripcionData.obtenerInscripciones();
-        System.out.println("Lista completa de inscripciones:");
-        for (Inscripcion i : inscripciones) {
-            System.out.println(i);
-        }
+            // 2. Guardar un nuevo alumno
+            Alumno nuevoAlumno = new Alumno("Juancito", 123417824, "Pereira");
+            alumnoData.guardarAlumno(nuevoAlumno);
+            System.out.println("Alumno guardado: " + nuevoAlumno);
 
-        // Obtener inscripciones por alumno
-        System.out.println("Ingrese el ID del alumno para listar sus inscripciones:");
-        int idAlumnoParaBuscar = leer.nextInt();
-        List<Inscripcion> inscripcionesPorAlumno = inscripcionData.obtenerInscripcionesPorAlumno(idAlumnoParaBuscar);
-        System.out.println("Inscripciones del alumno:");
-        for (Inscripcion inscripcion : inscripcionesPorAlumno) {
-            System.out.println(inscripcion);
-        }
+            // 3. Buscar un alumno por ID
+            Alumno alumnoEncontrado = alumnoData.buscarAlumnoPorId(nuevoAlumno.getIdAlumno());  // Cambiado a buscar por ID
+            System.out.println("Alumno encontrado: " + alumnoEncontrado);
 
-        // Obtener materias cursadas por un alumno
-        System.out.println("Materias cursadas por el alumno:");
-        List<Materia> materiasCursadas = inscripcionData.obtenerMateriasCursadas(idAlumnoParaBuscar);
-        for (Materia materia : materiasCursadas) {
-            System.out.println(materia);
-        }
+            // 4. Listar todos los alumnos
+            System.out.println("\nListado de todos los alumnos:");
+            List<Alumno> alumnos = alumnoData.obtenerAlumnos();  // Asumiendo que implementarás este método
+            for (Alumno alumno : alumnos) {
+                System.out.println(alumno);
+            }
 
-        // Obtener materias NO cursadas por un alumno
-        System.out.println("Materias NO cursadas por el alumno:");
-        List<Materia> materiasNoCursadas = inscripcionData.obtenerMateriasNOCursadas(idAlumnoParaBuscar);
-        for (Materia materia : materiasNoCursadas) {
-            System.out.println(materia);
-        }
+            // 5. Guardar una nueva materia
+            Materia nuevaMateria = new Materia("Matemáticas", 2024);
+            materiaData.guardarMateria(nuevaMateria);
+            System.out.println("Materia guardada: " + nuevaMateria);
 
-        // Actualizar la nota de una inscripción
-        System.out.println("Ingrese el ID del alumno y de la materia para actualizar la nota:");
-        int idAlumnoNota = leer.nextInt();
-        int idMateriaNota = leer.nextInt();
-        System.out.println("Ingrese la nueva nota:");
-        double nuevaNota = leer.nextDouble();
-        inscripcionData.actualizarNota(idAlumnoNota, idMateriaNota, nuevaNota);
-        System.out.println("Nota actualizada con éxito!");
+            // 6. Buscar una materia por ID
+            Materia materiaEncontrada = materiaData.buscarMateria(nuevaMateria.getIdMateria());
+            System.out.println("Materia encontrada: " + materiaEncontrada);
 
-        // Eliminar inscripción de un alumno en una materia
-        System.out.println("Ingrese el ID del alumno y de la materia para eliminar la inscripción:");
-        int idAlumnoEliminar = leer.nextInt();
-        int idMateriaEliminar = leer.nextInt();
-        inscripcionData.borrarInscripcionMateriaAlumno(idAlumnoEliminar, idMateriaEliminar);
-        System.out.println("Inscripción eliminada con éxito!");
+            // 7. Listar todas las materias
+            System.out.println("\nListado de todas las materias:");
+            List<Materia> materias = materiaData.listarMaterias();
+            for (Materia materia : materias) {
+                System.out.println(materia);
+            }
 
-        // Obtener alumnos inscritos en una materia
-        System.out.println("Ingrese el ID de la materia para listar los alumnos inscritos:");
-        int idMateriaParaAlumnos = leer.nextInt();
-        List<Alumno> alumnosInscritos = inscripcionData.obtenerAlumnosXMateria(idMateriaParaAlumnos);
-        System.out.println("Alumnos inscritos en la materia:");
-        for (Alumno alumno : alumnosInscritos) {
-            System.out.println(alumno);
+            // 8. Inscribir al alumno en una materia
+            Inscripcion nuevaInscripcion = new Inscripcion(nuevoAlumno, nuevaMateria, 0);  // Inicialmente sin nota
+            inscripcionData.guardarInscripcion(nuevaInscripcion);
+            System.out.println("Inscripción guardada: " + nuevaInscripcion);
+
+            // 9. Obtener todas las inscripciones de un alumno
+            System.out.println("\nInscripciones del alumno con ID " + nuevoAlumno.getIdAlumno() + ":");
+            List<Inscripcion> inscripcionesAlumno = inscripcionData.obtenerInscripcionesPorAlumno(nuevoAlumno.getIdAlumno());
+            for (Inscripcion insc : inscripcionesAlumno) {
+                System.out.println(insc);
+            }
+
+            // 10. Actualizar la nota de una inscripción
+            inscripcionData.actualizarNota(nuevoAlumno.getIdAlumno(), nuevaMateria.getIdMateria(), 8.5);
+            System.out.println("Nota actualizada para el alumno " + nuevoAlumno.getIdAlumno() + " en la materia " + nuevaMateria.getIdMateria());
+
+            // 11. Eliminar una inscripción de un alumno en una materia
+            inscripcionData.borrarInscripcionMateriaAlumno(nuevoAlumno.getIdAlumno(), nuevaMateria.getIdMateria());
+            System.out.println("Inscripción eliminada para el alumno " + nuevoAlumno.getIdAlumno() + " en la materia " + nuevaMateria.getIdMateria());
+
+            // 12. Listar alumnos por materia
+            System.out.println("\nListado de alumnos por materia (ID de la materia: " + nuevaMateria.getIdMateria() + "):");
+            List<Alumno> alumnosPorMateria = inscripcionData.obtenerAlumnosxMateria(nuevaMateria.getIdMateria());
+            for (Alumno alumno : alumnosPorMateria) {
+                System.out.println(alumno);
+            }
+
+        } else {
+            System.out.println("No se pudo establecer conexión con la base de datos.");
         }
     }
 }

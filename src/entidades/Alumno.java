@@ -32,6 +32,12 @@ public class Alumno {
         this.estado = estado;
     }
 
+    public Alumno(String nombre, int dni, String apellido) {
+        this.nombre = nombre;
+        this.dni = dni;
+        this.apellido = apellido;
+    }
+    
     public int getIdAlumno() {
         return idAlumno;
     }
@@ -83,6 +89,10 @@ public class Alumno {
     @Override
     public String toString() {
         return "Alumno{" + "idAlumno=" + idAlumno + ", dni=" + dni + ", apellido=" + apellido + ", nombre=" + nombre + '}';
+    }
+
+    public int getId() {
+        return idAlumno;
     }
  }
     

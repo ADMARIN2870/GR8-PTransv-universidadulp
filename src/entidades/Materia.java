@@ -18,6 +18,12 @@ public class Materia {
         this.estado = estado;
     }
 
+    public Materia(String nombre_materia, int anio) {
+        this.nombre_materia = nombre_materia;
+        this.anio = anio;
+        this.estado = true;
+    }
+
     // Métodos getter y setter para cada atributo
     public int getIdMateria() {
         return idMateria;
@@ -56,11 +62,8 @@ public class Materia {
         return "Materia{" + "idMateria=" + idMateria + ", nombre_materia='" + nombre_materia + '\'' + ", anio=" + anio + ", estado=" + estado + '}';
     }
 
-    public void setNombre_Materia(String string) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void setNombre_Materia(String nombre_materia) {
+        this.nombre_materia = nombre_materia;
     }
 
-    public void setanio(int aInt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-}
