@@ -18,13 +18,13 @@ public class Materia {
         this.estado = estado;
     }
 
-<<<<<<< Updated upstream
+
     public Materia(String nombre_materia, int anio) {
         this.nombre_materia = nombre_materia;
         this.anio = anio;
         this.estado = true;
     }
-=======
+
     public Materia(int idMateria, String nombre_materia, int anio, boolean estado) {
         this.idMateria = idMateria;
         this.nombre_materia = nombre_materia;
@@ -32,7 +32,7 @@ public class Materia {
         this.estado = estado;
     }
     
->>>>>>> Stashed changes
+
 
     // Métodos getter y setter para cada atributo
     public int getIdMateria() {
