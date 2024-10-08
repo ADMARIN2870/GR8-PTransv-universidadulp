@@ -14,7 +14,7 @@ import persistencia.AlumnoData;
  * @author salon
  */
 public class ViewAlumno extends javax.swing.JInternalFrame {
-    public  AlumnoData aluData=new AlumnoData();
+    private AlumnoData aluData=new AlumnoData();
         
     /**
      * Creates new form ViewAlumno
@@ -237,8 +237,12 @@ public class ViewAlumno extends javax.swing.JInternalFrame {
                 if(existe==true){
                     aluData.guardarAlumno(alumno);
                     JOptionPane.showMessageDialog(this, "¡Alumno guardado!");
+                    jbGuardar.setEnabled(false);
+                    jtfNombre.setText("");
+                    jtfApellido.setText("");
+                    jtfDni.setText("");
                 }else{
-                    JOptionPane.showMessageDialog(this, "El dni del alumno ya existe");
+                    JOptionPane.showMessageDialog(this, "El dni "+dni+ " del alumno ya existe");
                 }
                 
             } else{
@@ -252,10 +256,6 @@ public class ViewAlumno extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "Dni solo reciben valores numericos", "Error", JOptionPane.ERROR_MESSAGE);
         
         }
-        jbGuardar.setEnabled(false);
-        jtfNombre.setText("");
-        jtfApellido.setText("");
-        jtfDni.setText("");
         
     }//GEN-LAST:event_jbGuardarActionPerformed
 
@@ -269,30 +269,38 @@ public class ViewAlumno extends javax.swing.JInternalFrame {
     private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
         // TODO add your handling code here:
         try{
-            int dni = Integer.parseInt(jtfDni.getText());
-            String nombre =aluData.buscarAlumnoPorDni(dni).getApellido();
-            String apellido=aluData.buscarAlumnoPorDni(dni).getNombre();
-            LocalDate fecha= aluData.buscarAlumnoPorDni(dni).getFechaNacimiento();
-            boolean estado =aluData.buscarAlumnoPorDni(dni).isEstado();
-            jrbEstado.setSelected(estado);
-            jtfNombre.setText(nombre);
-            jtfApellido.setText(apellido);
-            Date fechaPars=Date.from(fecha.atStartOfDay(ZoneId.systemDefault()).toInstant());
-            jdFecha.setDate(fechaPars);
-        }catch (NullPointerException e){
-             JOptionPane.showMessageDialog(this, "El alumno no existe "); 
-          }
+            try{
+                int dni = Integer.parseInt(jtfDni.getText());
+                String nombre =aluData.buscarAlumnoPorDni(dni).getApellido();
+                String apellido=aluData.buscarAlumnoPorDni(dni).getNombre();
+                LocalDate fecha= aluData.buscarAlumnoPorDni(dni).getFechaNacimiento();
+                boolean estado =aluData.buscarAlumnoPorDni(dni).isEstado();
+                jrbEstado.setSelected(estado);
+                jtfNombre.setText(nombre);
+                jtfApellido.setText(apellido);
+                Date fechaPars=Date.from(fecha.atStartOfDay(ZoneId.systemDefault()).toInstant());
+                jdFecha.setDate(fechaPars);
+            }catch (NullPointerException e){
+                 JOptionPane.showMessageDialog(this, "El alumno no existe "); 
+              }
+        }catch(NumberFormatException ex){
+            JOptionPane.showMessageDialog(this, "Debe ingresar algun valor en dni ","Error",JOptionPane.ERROR_MESSAGE);
+        }    
         
     }//GEN-LAST:event_jbBuscarActionPerformed
 
     private void jbEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminarActionPerformed
         // TODO add your handling code here:
-        int dni = Integer.parseInt(jtfDni.getText());
-        int respuesta= JOptionPane.showConfirmDialog(null, "¿Estás seguro de que quieres eliminar el alumno "+aluData.buscarAlumnoPorDni(dni).getApellido()+" de la base de datos?", "Advertencia", JOptionPane.YES_NO_OPTION);
-        if (respuesta == JOptionPane.YES_OPTION) {
-            aluData.eliminarAlumnoPorDni(dni);//Eliminacion fisica 
-            JOptionPane.showMessageDialog(this, "Alumno eliminado "); 
-        }
+        try{
+            int dni = Integer.parseInt(jtfDni.getText());
+            int respuesta= JOptionPane.showConfirmDialog(null, "¿Estás seguro de que quieres eliminar el alumno "+aluData.buscarAlumnoPorDni(dni).getApellido()+" de la base de datos?", "Advertencia", JOptionPane.YES_NO_OPTION);
+            if (respuesta == JOptionPane.YES_OPTION) {
+                aluData.eliminarAlumnoPorDni(dni);//Eliminacion fisica 
+                JOptionPane.showMessageDialog(this, "Alumno eliminado "); 
+            }
+        }catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(this, "Debe ingresar algun valor en dni ","Error",JOptionPane.ERROR_MESSAGE); 
+        }    
         
     }//GEN-LAST:event_jbEliminarActionPerformed
 
