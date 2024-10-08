@@ -4,16 +4,16 @@ package persistencia;
 import entidades.Alumno;
 import java.sql.*;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 public class AlumnoData {
-    private final Connection connection;
+    private Connection connection = Conexion.getConexion();
 
     public AlumnoData(Conexion conexion) {
         connection = Conexion.getConexion();
     }
 
     public AlumnoData() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
     public void guardarAlumno(Alumno alumno) {
@@ -159,10 +159,51 @@ public class AlumnoData {
     } catch (SQLException e) {
         System.out.println("Error al eliminar el alumno: " + e.getMessage());
     }
+  }
+     public void eliminarAlumnoPorDni(int dni) {
+    String sql = "DELETE FROM alumno WHERE dni = ?";
+
+    try {
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, dni);  // Se pasa el ID del alumno a eliminar
+            
+            int filasAfectadas = statement.executeUpdate();  // Ejecuta la eliminación
+            
+            if (filasAfectadas > 0) {
+                System.out.println("Alumno eliminado con éxito.");
+            } else {
+                System.out.println("No se encontró un alumno con ese ID.");
+            }
+        } // Se pasa el ID del alumno a eliminar
+    } catch (SQLException e) {
+        System.out.println("Error al eliminar el alumno: " + e.getMessage());
+    }
 }
 
     public Alumno buscarAlumnoPorNombreApellido(String nombreAlumno, String apellidoAlumno) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+    
+    public boolean dniExiste(int dni){
+        boolean existencia=true;
+        
+        String sql ="SELECT dni FROM alumno;";
+        try{
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                
+                 if(rs.getInt("dni")==(dni)){
+                 existencia=false;
+            }
+            }
+            ps.close();
+        
+        }catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla Alumno " + ex.getMessage());
+        }
+        return existencia;
+    }
+ 
 
 }

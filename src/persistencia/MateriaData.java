@@ -1,12 +1,4 @@
-/* Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 
-
-/**
- *
- * @author Adriana
- */
 
 package persistencia;
 
@@ -16,10 +8,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MateriaData {
-    private final Connection connection;
+    
+    private Connection connection = Conexion.getConexion();
 
     public MateriaData(Conexion conexion) {
         connection = Conexion.getConexion();
+    }
+
+    public MateriaData() {
+       
     }
 
     // Método para guardar una nueva materia en la base de datos
