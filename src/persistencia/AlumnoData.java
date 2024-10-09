@@ -85,7 +85,10 @@ public class AlumnoData {
                 alumno.setDni(resultSet.getInt("dni"));
                 alumno.setApellido(resultSet.getString("apellido"));
                 alumno.setNombre(resultSet.getString("nombre"));
-                alumno.setFechaNacimiento(resultSet.getDate("fechaNacimiento").toLocalDate());
+
+                
+                    alumno.setFechaNacimiento(resultSet.getDate("fechaNacimiento").toLocalDate());
+
                 alumno.setEstado(resultSet.getBoolean("estado"));
             } else {
                 System.out.println("No se encontró un alumno con ese DNI.");
