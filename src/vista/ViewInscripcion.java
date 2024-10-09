@@ -35,7 +35,7 @@ public class ViewInscripcion extends javax.swing.JInternalFrame {
         initComponents();
         
         aData = new AlumnoData();
-        listaAlumno = aData.listarAlumnos();
+        listaAlumno = aData.obtenerAlumnos();
         modelo = new DefaultTableModel();
         inscData = new InscripcionData();
         mData = new MateriaData();
@@ -222,7 +222,7 @@ public class ViewInscripcion extends javax.swing.JInternalFrame {
             Inscripcion i= new Inscripcion (a ,m,0);
             inscData.guardarInscripcion(i);
             borrarFilaTabla();
-
+        }
     }//GEN-LAST:event_jbInscribirActionPerformed
 
 
