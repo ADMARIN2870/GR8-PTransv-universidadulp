@@ -118,6 +118,11 @@ public class ViewInscripcion extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(jtMaterias);
 
         jbSalir.setText("Salir");
+        jbSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbSalirActionPerformed(evt);
+            }
+        });
 
         jbAnularInscripcion.setText("Anular inscripcion");
         jbAnularInscripcion.setEnabled(false);
@@ -289,6 +294,11 @@ public class ViewInscripcion extends javax.swing.JInternalFrame {
        }
     }//GEN-LAST:event_jbAnularInscripcionActionPerformed
 
+    private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_jbSalirActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<Alumno> cbAlumno;
@@ -317,7 +327,7 @@ public class ViewInscripcion extends javax.swing.JInternalFrame {
         modelo.addColumn("Año");
     }
     
-    jtMaterias.setModel(modelo);  // Asegúrate de que el modelo esté asignado a la tabla
+    jtMaterias.setModel(modelo);  
 }
 
     
