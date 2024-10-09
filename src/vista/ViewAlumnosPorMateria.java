@@ -22,12 +22,12 @@ import persistencia.MateriaData;
  *
  * @author Adriana
  */
-public class AlumnosPorMateriaView extends javax.swing.JInternalFrame {
+public class ViewAlumnosPorMateria extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form AlumnosPorMateriaView
      */
-    public AlumnosPorMateriaView() {
+    public ViewAlumnosPorMateria() {
         initComponents();
     }
 
