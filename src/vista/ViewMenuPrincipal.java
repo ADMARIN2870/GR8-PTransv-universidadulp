@@ -68,6 +68,11 @@ public class ViewMenuPrincipal extends javax.swing.JFrame {
         jmAdministracion.setText("Administracion");
 
         jmiInscripcion.setText("Inscripciones");
+        jmiInscripcion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiInscripcionActionPerformed(evt);
+            }
+        });
         jmAdministracion.add(jmiInscripcion);
 
         jMenuItem1.setText("Cargar/Modificar Notas");
@@ -159,6 +164,16 @@ public class ViewMenuPrincipal extends javax.swing.JFrame {
        jdpVistaPrincipal.add(internalPorMateria);
        jdpVistaPrincipal.moveToFront(internalPorMateria);
     }//GEN-LAST:event_jmiConsultasActionPerformed
+
+    private void jmiInscripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiInscripcionActionPerformed
+        // TODO add your handling code here:
+         jdpVistaPrincipal.removeAll();
+       jdpVistaPrincipal.repaint();
+       ViewInscripcion internalInscripcion = new ViewInscripcion();
+       internalInscripcion.setVisible(true);
+       jdpVistaPrincipal.add(internalInscripcion);
+       jdpVistaPrincipal.moveToFront(internalInscripcion);
+    }//GEN-LAST:event_jmiInscripcionActionPerformed
 
     /**
      * @param args the command line arguments

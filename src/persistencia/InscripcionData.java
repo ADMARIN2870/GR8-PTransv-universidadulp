@@ -16,15 +16,12 @@ public class InscripcionData {
     // Constructor principal que recibe una conexión y crea instancias de MateriaData y AlumnoData
     public InscripcionData(Conexion conexion) {
         connection = Conexion.getConexion();
-        matData = new MateriaData(conexion);
-        aluData = new AlumnoData(conexion);
+  
     }
 
     // Constructor vacío implementado (si es necesario)
     public InscripcionData() {
         this.connection = Conexion.getConexion(); // Inicializa la conexión
-        this.matData = new MateriaData((Conexion) getConexion()); // Inicializa MateriaData
-        this.aluData = new AlumnoData((Conexion) getConexion()); // Inicializa AlumnoData
     }
 
     // Constructor con parámetros (si necesitas usarlo)
