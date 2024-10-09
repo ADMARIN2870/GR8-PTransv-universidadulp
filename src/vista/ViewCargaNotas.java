@@ -31,7 +31,8 @@ public class ViewCargaNotas extends javax.swing.JInternalFrame {
         aData =new AlumnoData();
         listaA= (ArrayList <Alumno>) aData.obtenerAlumnos();
         modelo=new DefaultTableModel();
-        InscripcionData inscripcionData = new InscripcionData();
+        Conexion con=null;
+        InscripcionData inscripcionData = new InscripcionData(con);
         mData= new MateriaData();
         
         cargaAlumnos();

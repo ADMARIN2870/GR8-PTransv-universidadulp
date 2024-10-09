@@ -83,6 +83,11 @@ public class ViewMenuPrincipal extends javax.swing.JFrame {
         jmConsultas.setText("Consultas");
 
         jmiConsultas.setText("Alumnos por materia");
+        jmiConsultas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiConsultasActionPerformed(evt);
+            }
+        });
         jmConsultas.add(jmiConsultas);
 
         jmbGeneral.add(jmConsultas);
@@ -144,6 +149,16 @@ public class ViewMenuPrincipal extends javax.swing.JFrame {
        jdpVistaPrincipal.add(internalMateria);
        jdpVistaPrincipal.moveToFront(internalMateria);
     }//GEN-LAST:event_jmiMateriasActionPerformed
+
+    private void jmiConsultasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiConsultasActionPerformed
+        // TODO add your handling code here:
+           jdpVistaPrincipal.removeAll();
+       jdpVistaPrincipal.repaint();
+       AlumnosPorMateriaView internalPorMateria = new AlumnosPorMateriaView();
+       internalPorMateria.setVisible(true);
+       jdpVistaPrincipal.add(internalPorMateria);
+       jdpVistaPrincipal.moveToFront(internalPorMateria);
+    }//GEN-LAST:event_jmiConsultasActionPerformed
 
     /**
      * @param args the command line arguments
