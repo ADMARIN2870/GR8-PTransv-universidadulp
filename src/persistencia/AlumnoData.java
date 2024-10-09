@@ -122,6 +122,8 @@ public class AlumnoData {
                 alumno.setEstado(resultSet.getBoolean("estado"));
                 alumnos.add(alumno);
             }
+        }catch(NullPointerException e){
+            System.out.println("Error NullPointer");
         }
     } catch (SQLException e) {
         System.out.println("Error al obtener los alumnos: " + e.getMessage());

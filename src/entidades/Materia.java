@@ -33,6 +33,7 @@ public class Materia {
     }
     
 
+    
 
     // Métodos getter y setter para cada atributo
     public int getIdMateria() {

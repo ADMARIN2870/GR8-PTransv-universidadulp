@@ -18,7 +18,7 @@ import persistencia.MateriaData;
  *
  * @author nelso
  */
-public class view_formulario_de_inscripcion extends javax.swing.JInternalFrame {
+public class ViewInscripcion extends javax.swing.JInternalFrame {
 
     private List<Materia> listaMateria;
     private List<Alumno> listaAlumno;
@@ -31,7 +31,7 @@ public class view_formulario_de_inscripcion extends javax.swing.JInternalFrame {
      */
     private DefaultTableModel modelo;
     
-    public view_formulario_de_inscripcion() {
+    public ViewInscripcion() {
         initComponents();
         
         aData = new AlumnoData();
@@ -49,7 +49,7 @@ public class view_formulario_de_inscripcion extends javax.swing.JInternalFrame {
     
     private void cargarAlumnos(){
     for (Alumno item: listaAlumno){
-            cboxAlumno.addItem(item);
+            cbAlumno.addItem(item);
         }
     }
 
@@ -64,7 +64,6 @@ public class view_formulario_de_inscripcion extends javax.swing.JInternalFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        cboxAlumno = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         jRmateriasInscriptas = new javax.swing.JRadioButton();
         jRmateriasNoInscriptas = new javax.swing.JRadioButton();
@@ -73,6 +72,7 @@ public class view_formulario_de_inscripcion extends javax.swing.JInternalFrame {
         jbSalir = new javax.swing.JButton();
         jbAnularInscripcion = new javax.swing.JButton();
         jbInscribir = new javax.swing.JButton();
+        cbAlumno = new javax.swing.JComboBox<>();
 
         setTitle("Formulario de inscripcion");
 
@@ -115,11 +115,6 @@ public class view_formulario_de_inscripcion extends javax.swing.JInternalFrame {
 
         jbAnularInscripcion.setText("Anular inscripcion");
         jbAnularInscripcion.setEnabled(false);
-        jbAnularInscripcion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbAnularInscripcionActionPerformed(evt);
-            }
-        });
 
         jbInscribir.setText("Inscribir");
         jbInscribir.setEnabled(false);
@@ -142,23 +137,25 @@ public class view_formulario_de_inscripcion extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jbSalir))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(32, 32, 32)
-                            .addComponent(jRmateriasInscriptas)
-                            .addGap(29, 29, 29)
-                            .addComponent(jRmateriasNoInscriptas))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(115, 115, 115)
-                            .addComponent(jLabel3)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jRmateriasInscriptas)
+                        .addGap(18, 18, 18)
+                        .addComponent(jRmateriasNoInscriptas)
+                        .addGap(11, 11, 11))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
-                        .addGap(61, 61, 61)
-                        .addComponent(cboxAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addComponent(cbAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(24, 24, 24)))
                 .addGap(0, 43, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addGap(97, 97, 97)
-                .addComponent(jLabel1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(97, 97, 97)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(116, 116, 116)
+                        .addComponent(jLabel3)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -169,10 +166,10 @@ public class view_formulario_de_inscripcion extends javax.swing.JInternalFrame {
                 .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(cboxAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(47, 47, 47)
+                    .addComponent(cbAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(45, 45, 45)
                 .addComponent(jLabel3)
-                .addGap(29, 29, 29)
+                .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jRmateriasInscriptas)
                     .addComponent(jRmateriasNoInscriptas))
@@ -189,6 +186,16 @@ public class view_formulario_de_inscripcion extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jRmateriasNoInscriptasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRmateriasNoInscriptasActionPerformed
+        // TODO add your handling code here:
+        borrarFilaTabla();
+        jRmateriasInscriptas.setSelected(false);
+        cargaDatosNoInscritas();
+        jbAnularInscripcion.setEnabled(false);
+        jbInscribir.setEnabled(true);
+
+    }//GEN-LAST:event_jRmateriasNoInscriptasActionPerformed
+
     private void jRmateriasInscriptasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRmateriasInscriptasActionPerformed
         // TODO add your handling code here:
         borrarFilaTabla();
@@ -196,49 +203,31 @@ public class view_formulario_de_inscripcion extends javax.swing.JInternalFrame {
         cargaDatosInscritas();
         jbAnularInscripcion.setEnabled(true);
         jbInscribir.setEnabled(false);
-        
-        
-    }//GEN-LAST:event_jRmateriasInscriptasActionPerformed
 
-    private void jRmateriasNoInscriptasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRmateriasNoInscriptasActionPerformed
-        // TODO add your handling code here:
-        borrarFilaTabla();
-        jRmateriasInscriptas.setSelected(false);
-        cargaDatosNoInscritas();
-                jbAnularInscripcion.setEnabled(false);
-        jbInscribir.setEnabled(true);
-        
-    }//GEN-LAST:event_jRmateriasNoInscriptasActionPerformed
+    }//GEN-LAST:event_jRmateriasInscriptasActionPerformed
 
     private void jbInscribirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbInscribirActionPerformed
         // TODO add your handling code here:
         int filaSeleccionada = jtMaterias.getSelectedRow();
-        
+
         if (filaSeleccionada != -1) {
-            Alumno a= (Alumno) cboxAlumno.getSelectedItem();
-            
+            Alumno a= (Alumno) cbAlumno.getSelectedItem();
+
             int idMateria=(Integer)modelo.getValueAt(filaSeleccionada, 0);
             String nombreMateria=(String)modelo.getValueAt(filaSeleccionada, 1);
             int anio= (Integer) modelo.getValueAt(filaSeleccionada, 2);
-            
+
             Materia m=new Materia (idMateria, nombreMateria, anio, true);
-            
+
             Inscripcion i= new Inscripcion (a ,m,0);
             inscData.guardarInscripcion(i);
             borrarFilaTabla();
-            
-            
-    }//GEN-LAST:event_jbInscribirActionPerformed
 
-    private void jbAnularInscripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAnularInscripcionActionPerformed
-        // TODO add your handling code hereç
-        
-        
-    }//GEN-LAST:event_jbAnularInscripcionActionPerformed
+    }//GEN-LAST:event_jbInscribirActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<Alumno> cboxAlumno;
+    private javax.swing.JComboBox<Alumno> cbAlumno;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -274,7 +263,7 @@ public class view_formulario_de_inscripcion extends javax.swing.JInternalFrame {
     
     private void cargaDatosNoInscritas() {
     
-    Alumno selec = (Alumno) cboxAlumno.getSelectedItem();
+    Alumno selec = (Alumno) cbAlumno.getSelectedItem();
     listaMateria = inscData.obtenerMateriasNOCursadas(selec.getIdAlumno());
 
     for(Materia m : listaMateria) {
@@ -284,7 +273,7 @@ public class view_formulario_de_inscripcion extends javax.swing.JInternalFrame {
 
 private void cargaDatosInscritas() {
     
-    Alumno selec = (Alumno) cboxAlumno.getSelectedItem();
+    Alumno selec = (Alumno) cbAlumno.getSelectedItem();
     List<Materia> lista = (ArrayList) inscData.obtenerMateriasCursadas(selec.getIdAlumno());
 
     for(Materia m : lista) {
