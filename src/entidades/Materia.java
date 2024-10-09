@@ -70,7 +70,7 @@ public class Materia {
 
     @Override
     public String toString() {
-        return "Materia{" + "idMateria=" + idMateria + ", nombre_materia='" + nombre_materia + '\'' + ", anio=" + anio + ", estado=" + estado + '}';
+        return nombre_materia+" "+anio+", ID: "+idMateria;
     }
 
     public void setNombre_Materia(String nombre_materia) {

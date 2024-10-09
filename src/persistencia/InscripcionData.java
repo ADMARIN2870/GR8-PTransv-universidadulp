@@ -177,8 +177,10 @@ public class InscripcionData {
 
     // Método para obtener alumnos inscritos en una materia específica
     public List<Alumno> obtenerAlumnosXMateria(int idMateria) {
+        
         List<Alumno> alumnos = new ArrayList<>();
         String sql = "SELECT a.* FROM alumno a JOIN inscripcion i ON a.idAlumno = i.idAlumno WHERE i.idMateria = ?";
+        
         try {
             try (PreparedStatement statement = connection.prepareStatement(sql)) {
                 statement.setInt(1, idMateria);
