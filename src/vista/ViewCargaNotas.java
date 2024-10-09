@@ -16,7 +16,7 @@ public class ViewCargaNotas extends javax.swing.JInternalFrame {
     private List <Materia> listaM;
     private List <Alumno> listaA;
     
-    private InscripcionData inscripcionData;
+   private InscripcionData inscripcionData;
     private MateriaData mData;
     private AlumnoData aData;
     
@@ -31,7 +31,7 @@ public class ViewCargaNotas extends javax.swing.JInternalFrame {
         aData =new AlumnoData();
         listaA= (ArrayList <Alumno>) aData.obtenerAlumnos();
         modelo=new DefaultTableModel();
-        Conexion con=null;
+       Conexion con = new Conexion(); //ver q onda esto
         InscripcionData inscripcionData = new InscripcionData(con);
         mData= new MateriaData();
         
@@ -137,6 +137,7 @@ public class ViewCargaNotas extends javax.swing.JInternalFrame {
            Materia m= new Materia ();
           // Inscripcion ins= new Inscripcion(a, m, 0);
           // inscData.guardarInscripcion(ins);
+
            inscripcionData.actualizarNota(idMateria, idMateria, 0);
            borrarFilaTabla();
         }
@@ -172,6 +173,7 @@ public class ViewCargaNotas extends javax.swing.JInternalFrame {
     
     private void cargaDatosInscriptas(){
         Alumno selec =(Alumno) jcbAlumnoData.getSelectedItem();
+
         List <Materia> lista= (ArrayList) inscripcionData.obtenerMateriasCursadas(selec.getIdAlumno());
         for(Materia m : lista){
             modelo.addRow(new Object [] {m.getIdMateria() , m.getNombre_materia()}) ;
