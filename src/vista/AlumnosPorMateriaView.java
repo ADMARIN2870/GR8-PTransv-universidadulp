@@ -31,7 +31,7 @@ public class AlumnosPorMateriaView extends javax.swing.JInternalFrame {
         initComponents();
     }
 
-  
+     
 public class AlumnosPorMateriaForm extends JFrame {
     
     private JComboBox<Materia> jComboBoxMaterias;
