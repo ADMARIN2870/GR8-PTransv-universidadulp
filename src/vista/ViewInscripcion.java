@@ -9,6 +9,7 @@ import entidades.Inscripcion;
 import entidades.Materia;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import persistencia.AlumnoData;
 import persistencia.InscripcionData;
@@ -115,6 +116,11 @@ public class ViewInscripcion extends javax.swing.JInternalFrame {
 
         jbAnularInscripcion.setText("Anular inscripcion");
         jbAnularInscripcion.setEnabled(false);
+        jbAnularInscripcion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbAnularInscripcionActionPerformed(evt);
+            }
+        });
 
         jbInscribir.setText("Inscribir");
         jbInscribir.setEnabled(false);
@@ -222,8 +228,59 @@ public class ViewInscripcion extends javax.swing.JInternalFrame {
             Inscripcion i= new Inscripcion (a ,m,0);
             inscData.guardarInscripcion(i);
             borrarFilaTabla();
+            
+            try {
+        // Mostrar un mensaje de éxito
+                JOptionPane.showMessageDialog(this, 
+                        "Inscripción exitosa.", 
+                        "Éxito", 
+                        JOptionPane.INFORMATION_MESSAGE);
+        
+    } catch (Exception e) {
+        // Manejo general de cualquier otra excepción
+        JOptionPane.showMessageDialog(this, "Error inesperado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+    }
         }
     }//GEN-LAST:event_jbInscribirActionPerformed
+
+    private void jbAnularInscripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAnularInscripcionActionPerformed
+        // TODO add your handling code here:
+        int filaSeleccionada = jtMaterias.getSelectedRow();
+        
+      // Verificar si hay una inscripción activa
+    if (filaSeleccionada != -1) {
+        // Mostrar un diálogo de confirmación antes de anular la inscripción
+        int response = JOptionPane.showConfirmDialog(this, 
+                "¿Está seguro de que desea anular la inscripción?", 
+                "Confirmación", 
+                JOptionPane.YES_NO_OPTION);
+        
+        // Si el usuario confirma la acción
+        if (response == JOptionPane.YES_OPTION) {
+            // Lógica para anular la inscripción
+            try {
+              // Mostrar un mensaje de éxito
+                JOptionPane.showMessageDialog(this, 
+                        "Inscripción anulada exitosamente.", 
+                        "Éxito", 
+                        JOptionPane.INFORMATION_MESSAGE);
+                
+              } catch (Exception e) {
+                // Manejo de errores en caso de que la anulación falle
+                JOptionPane.showMessageDialog(this, 
+                        "Error al anular la inscripción: " + e.getMessage(), 
+                        "Error", 
+                        JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    } else {
+        // Si no hay inscripción activa
+        JOptionPane.showMessageDialog(this, 
+                "No hay inscripción activa para anular.", 
+                "Información", 
+                JOptionPane.INFORMATION_MESSAGE);
+       }
+    }//GEN-LAST:event_jbAnularInscripcionActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

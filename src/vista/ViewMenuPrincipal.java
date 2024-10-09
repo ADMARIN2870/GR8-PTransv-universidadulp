@@ -159,7 +159,7 @@ public class ViewMenuPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
            jdpVistaPrincipal.removeAll();
        jdpVistaPrincipal.repaint();
-       AlumnosPorMateriaView internalPorMateria = new AlumnosPorMateriaView();
+       ViewAlumnosPorMateria internalPorMateria = new ViewAlumnosPorMateria();
        internalPorMateria.setVisible(true);
        jdpVistaPrincipal.add(internalPorMateria);
        jdpVistaPrincipal.moveToFront(internalPorMateria);
