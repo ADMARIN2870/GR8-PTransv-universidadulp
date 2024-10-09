@@ -292,11 +292,15 @@ public class ViewAlumno extends javax.swing.JInternalFrame {
     private void jbEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminarActionPerformed
         // TODO add your handling code here:
         try{
+            try{
             int dni = Integer.parseInt(jtfDni.getText());
             int respuesta= JOptionPane.showConfirmDialog(null, "¿Estás seguro de que quieres eliminar el alumno "+aluData.buscarAlumnoPorDni(dni).getApellido()+" de la base de datos?", "Advertencia", JOptionPane.YES_NO_OPTION);
             if (respuesta == JOptionPane.YES_OPTION) {
                 aluData.eliminarAlumnoPorDni(dni);//Eliminacion fisica 
                 JOptionPane.showMessageDialog(this, "Alumno eliminado "); 
+            }
+            }catch(NullPointerException e){
+                JOptionPane.showMessageDialog(this, "El alumno no existe ","Error",JOptionPane.ERROR_MESSAGE);
             }
         }catch(NumberFormatException e){
             JOptionPane.showMessageDialog(this, "Debe ingresar algun valor en dni ","Error",JOptionPane.ERROR_MESSAGE); 
