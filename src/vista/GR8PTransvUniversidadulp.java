@@ -1,5 +1,6 @@
-package vista;
 
+package vista;
+/*
 import entidades.*;
 import java.util.List;
 import persistencia.AlumnoData;
@@ -22,7 +23,7 @@ public class GR8PTransvUniversidadulp {
             InscripcionData inscripcionData = new InscripcionData(conexion, materiaData, alumnoData);
 
             // 2. Guardar un nuevo alumno
-            Alumno nuevoAlumno = new Alumno("Juancito", 123417824, "Pereira");
+            Alumno nuevoAlumno = new Alumno("Juancito", 123417111, "Pereira");
             alumnoData.guardarAlumno(nuevoAlumno);
             System.out.println("Alumno guardado: " + nuevoAlumno);
 
@@ -83,5 +84,29 @@ public class GR8PTransvUniversidadulp {
         } else {
             System.out.println("No se pudo establecer conexión con la base de datos.");
         }
+    }
+}
+*/
+import javax.swing.*;
+
+public class GR8PTransvUniversidadulp {
+    public static void main(String[] args) {
+        JFrame frame = new JFrame("Ventana Principal");
+        JDesktopPane desktopPane = new JDesktopPane();
+        
+        frame.setSize(528,394);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.add(desktopPane);
+        frame.setVisible(true);
+
+        // Crear y centrar el JInternalFrame
+        ViewAlumnosXMateria internalFrame = new ViewAlumnosXMateria();
+        desktopPane.add(internalFrame);
+        
+        internalFrame.setSize(400, 300);
+        int x = (desktopPane.getWidth() - internalFrame.getWidth()) / 2;
+        int y = (desktopPane.getHeight() - internalFrame.getHeight()) / 2;
+        internalFrame.setLocation(x, y);
+        internalFrame.setVisible(true);
     }
 }
