@@ -5,7 +5,6 @@
 package vista;
 
 import entidades.*;
-import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import persistencia.*;
@@ -14,7 +13,7 @@ import persistencia.*;
  *
  * @author salon
  */
-public class ViewAlumnosXMateria extends javax.swing.JInternalFrame {
+public final class ViewAlumnosXMateria extends javax.swing.JInternalFrame {
     private MateriaData matData=new MateriaData();
     private AlumnoData alumData = new AlumnoData();
     private InscripcionData inscData = new InscripcionData();
@@ -23,6 +22,7 @@ public class ViewAlumnosXMateria extends javax.swing.JInternalFrame {
     
      private DefaultTableModel modeloTabla = new DefaultTableModel(){
          
+          @Override
           public boolean isCellEditable(int fila, int columna) {
               
               return false;
@@ -53,7 +53,7 @@ public class ViewAlumnosXMateria extends javax.swing.JInternalFrame {
         jtAlumnos = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        jSalir = new javax.swing.JButton();
 
         setTitle("Consulta Alumnos por Materia");
 
@@ -81,10 +81,10 @@ public class ViewAlumnosXMateria extends javax.swing.JInternalFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel2.setText("Listado de Alumnos por Materia");
 
-        jButton1.setText("Salir");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jSalir.setText("Salir");
+        jSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jSalirActionPerformed(evt);
             }
         });
 
@@ -94,7 +94,7 @@ public class ViewAlumnosXMateria extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton1)
+                    .addComponent(jSalir)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
                             .addGap(125, 125, 125)
@@ -120,8 +120,8 @@ public class ViewAlumnosXMateria extends javax.swing.JInternalFrame {
                 .addGap(42, 42, 42)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addComponent(jSalir)
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         pack();
@@ -133,15 +133,16 @@ public class ViewAlumnosXMateria extends javax.swing.JInternalFrame {
          cargarDatos();
     }//GEN-LAST:event_jcbMateriasActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSalirActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        dispose();
+    }//GEN-LAST:event_jSalirActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton jSalir;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JComboBox<Materia> jcbMaterias;
     private javax.swing.JTable jtAlumnos;
