@@ -6,12 +6,17 @@ import entidades.Materia;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import static persistencia.Conexion.getConexion;
 
 public class InscripcionData {
     private final Connection connection;
-    private MateriaData matData;
-    private AlumnoData aluData;
+  //  private MateriaData matData;
+    private MateriaData matData =new MateriaData();
+    //private AlumnoData aluData;
+        private AlumnoData aluData = new AlumnoData();
+
+    
 
     // Constructor principal que recibe una conexión y crea instancias de MateriaData y AlumnoData
     public InscripcionData(Conexion conexion) {
@@ -74,7 +79,8 @@ public class InscripcionData {
         }
         return inscripciones;
     }
-
+    
+    //reversionar este metodo para lo que necesito
     // Método para obtener inscripciones de un alumno específico
     public List<Inscripcion> obtenerInscripcionesPorAlumno(int idAlumno) {
         List<Inscripcion> inscripciones = new ArrayList<>();
@@ -85,7 +91,7 @@ public class InscripcionData {
                 ResultSet resultSet = statement.executeQuery();
                 while (resultSet.next()) {
                     Inscripcion inscripcion = new Inscripcion();
-                    inscripcion.setIdInscripcion(resultSet.getInt("idInscripcion"));
+                    inscripcion.setIdInscripcion(resultSet.getInt("idInscripto"));
                     Alumno alumno = aluData.buscarAlumnoPorId(resultSet.getInt("idAlumno"));
                     Materia materia = matData.buscarMateria(resultSet.getInt("idMateria"));
                     inscripcion.setAlumno(alumno);
@@ -99,6 +105,37 @@ public class InscripcionData {
         }
         return inscripciones;
     }
+    //METODO LUCA
+    public List<Inscripcion>obtenerInscripcionesPorIdAlumno(int idAlumno){
+        ArrayList<Inscripcion> cursadas = new ArrayList<>();
+        
+        String sql = "SELECT * FROM inscripcion WHERE idAlumno= ?";
+        
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, idAlumno);
+            
+            ResultSet rs=ps.executeQuery();//Es Query por que es un select y no una modificacion
+            
+            while(rs.next()){
+                Inscripcion inscripcion = new Inscripcion();
+                inscripcion.setIdInscripcion(rs.getInt("idInscripto"));
+                Alumno alumno =  aluData.buscarAlumnoPorId(rs.getInt("idAlumno"));//Para recuperar el numbre del alumno y no solo el id
+                Materia materia = matData.buscarMateria(rs.getInt("idMateria"));
+                inscripcion.setAlumno(alumno);
+                inscripcion.setMateria(materia);
+                inscripcion.setNota(rs.getDouble("nota"));
+                
+                cursadas.add(inscripcion);
+            }
+            
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla inscripcion."+ex.getMessage());
+        }
+        
+        return cursadas;
+    }
 
     // Método para obtener materias cursadas por un alumno
     public List<Materia> obtenerMateriasCursadas(int idAlumno) {
@@ -111,8 +148,8 @@ public class InscripcionData {
                 while (resultSet.next()) {
                     Materia materia = new Materia();
                     materia.setIdMateria(resultSet.getInt("idMateria"));
-                    materia.setNombre_materia(resultSet.getString("nombre"));
-                    materia.setAnio(resultSet.getInt("anio"));
+                    materia.setNombre_materia(resultSet.getString("nombre_materia"));
+                    materia.setAnio(resultSet.getInt("año"));
                     materia.setEstado(resultSet.getBoolean("estado"));
                     materias.add(materia);
                 }
