@@ -77,4 +77,8 @@ public class Materia {
         this.nombre_materia = nombre_materia;
     }
 
+    public int getidMateria() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
     }

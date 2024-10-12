@@ -8,7 +8,9 @@ import persistencia.*;
 import entidades.*;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+
 
 
 public class ViewCargaNotas extends javax.swing.JInternalFrame {
@@ -25,6 +27,7 @@ public class ViewCargaNotas extends javax.swing.JInternalFrame {
     private AlumnoData aData;*/
      private DefaultTableModel modelo;
     //private DefaultTableModel modelo =new DefaultTableModel();
+    private Object tuTextField;
 
     /**
      * Creates new form ViewCargaNotas
@@ -145,27 +148,49 @@ public class ViewCargaNotas extends javax.swing.JInternalFrame {
         cargaDatosTabla();
     }//GEN-LAST:event_jcbAlumnoDataActionPerformed
 
+    
+    
+    
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
         // TODO add your handling code here:
         int filaSeleccionada= jtInscripcionData.getSelectedRow();
         if(filaSeleccionada != -1){
             Alumno a=(Alumno)jcbAlumnoData.getSelectedItem();
             int idMateria=(Integer) modelo.getValueAt(filaSeleccionada, 0);
-            String nombreMateria= (String)modelo.getValueAt(filaSeleccionada, 1);
+            Object valorNota= modelo.getValueAt(filaSeleccionada,2);
+            double nota = 0;
 //            Double nota= (Double)modelo.getValueAt(filaSeleccionada, 2);
-            double nota= (double)modelo.getValueAt(filaSeleccionada, 2);
 //            Integer nota= (Integer)modelo.getValueAt(filaSeleccionada, 2);
 //            int nota= (int)modelo.getValueAt(filaSeleccionada, 2);
+           
+    if (valorNota != null && !valorNota.toString().trim().isEmpty()) {
+
+    try{
+                String notaSTR = valorNota.toString().trim();
+               nota=Double.parseDouble(notaSTR);
+               } catch (NumberFormatException e) {
+            // Manejar el error si la conversión falla
+            JOptionPane.showMessageDialog(null, "La nota ingresada no es valida.");
+            return;
+        }
+        }
+    
             
-           Materia m= new Materia ();
+            Materia m= new Materia ();
+            m.setIdMateria(idMateria);
           // Inscripcion ins= new Inscripcion(a, m, 0);
           // inscData.guardarInscripcion(ins);
 
-           inscData.actualizarNota(idMateria, idMateria, nota);
+           inscData.actualizarNota(a.getIdAlumno(), m.getIdMateria(), nota);
            borrarFilaTabla();
+           
         }
+        JOptionPane.showMessageDialog(null, "Nota actualizada correctamente.");
     }//GEN-LAST:event_jbGuardarActionPerformed
 
+    
+    
+    
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
         // TODO add your handling code here:
         dispose();
@@ -233,6 +258,10 @@ public class ViewCargaNotas extends javax.swing.JInternalFrame {
             modelo.removeRow(i);
         }
         
+    }
+
+    private void If(boolean b) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
 }
