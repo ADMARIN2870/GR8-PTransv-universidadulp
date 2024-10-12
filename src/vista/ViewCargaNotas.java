@@ -174,8 +174,7 @@ public class ViewCargaNotas extends javax.swing.JInternalFrame {
             return;
         }
         }
-    
-            
+                
             Materia m= new Materia ();
             m.setIdMateria(idMateria);
           // Inscripcion ins= new Inscripcion(a, m, 0);
@@ -183,8 +182,7 @@ public class ViewCargaNotas extends javax.swing.JInternalFrame {
 
            inscData.actualizarNota(a.getIdAlumno(), m.getIdMateria(), nota);
            borrarFilaTabla();
-           
-        }
+                   }
         JOptionPane.showMessageDialog(null, "Nota actualizada correctamente.");
     }//GEN-LAST:event_jbGuardarActionPerformed
 
