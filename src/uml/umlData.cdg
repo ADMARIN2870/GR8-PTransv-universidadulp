@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="Multi-file class diagram">
+  <ClassDiagramComponents>
+    <Class name="AlumnoData" package="persistencia" visibility="public" xPosition="1089.0" yPosition="311.0">
+      <Fields>
+        <Field name="connection" type="Connection" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Conexion" name="conexion"/>
+        </Constructor>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="guardarAlumno" returnType="void" visibility="public">
+          <Argument type="Alumno" name="alumno"/>
+        </Method>
+        <Method name="buscarAlumnoPorId" returnType="Alumno" visibility="public">
+          <Argument type="int" name="idAlumno"/>
+        </Method>
+        <Method name="buscarAlumnoPorDni" returnType="Alumno" visibility="public">
+          <Argument type="int" name="dni"/>
+        </Method>
+        <Method name="obtenerAlumnos" returnType="ArrayList&lt;Alumno&gt;" visibility="public"/>
+        <Method name="modificarAlumno" returnType="void" visibility="public">
+          <Argument type="Alumno" name="alumno"/>
+        </Method>
+        <Method name="eliminarAlumnoPorId" returnType="void" visibility="public">
+          <Argument type="int" name="idAlumno"/>
+        </Method>
+        <Method name="eliminarAlumnoPorDni" returnType="void" visibility="public">
+          <Argument type="int" name="dni"/>
+        </Method>
+        <Method name="dniExiste" returnType="boolean" visibility="public">
+          <Argument type="int" name="dni"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Conexion" package="persistencia" visibility="public" xPosition="714.0" yPosition="10.0">
+      <Fields>
+        <Field name="URL" type="String" visibility="private" isStatic="true" isFinal="true"/>
+        <Field name="DB" type="String" visibility="private" isStatic="true" isFinal="true"/>
+        <Field name="USUARIO" type="String" visibility="private" isStatic="true" isFinal="true"/>
+        <Field name="PASSWORD" type="String" visibility="private" isStatic="true" isFinal="true"/>
+        <Field name="connection" type="Connection" visibility="private" isStatic="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="getInstancia" returnType="Object" visibility="public" isStatic="true"/>
+        <Method name="getConnection" returnType="org.mariadb.jdbc.Connection" visibility="public" isStatic="true"/>
+        <Method name="getConexion" returnType="Connection" visibility="public" isStatic="true"/>
+      </Methods>
+    </Class>
+    <Class name="InscripcionData" package="persistencia" visibility="public" xPosition="136.0" yPosition="264.0">
+      <Fields>
+        <Field name="connection" type="Connection" visibility="private" isFinal="true"/>
+        <Field name="matData" type="MateriaData" visibility="private"/>
+        <Field name="aluData" type="AlumnoData" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Conexion" name="conexion"/>
+        </Constructor>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="Conexion" name="conexion"/>
+          <Argument type="MateriaData" name="materiaData"/>
+          <Argument type="AlumnoData" name="alumnoData"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="guardarInscripcion" returnType="void" visibility="public">
+          <Argument type="Inscripcion" name="insc"/>
+        </Method>
+        <Method name="obtenerInscripciones" returnType="List&lt;Inscripcion&gt;" visibility="public"/>
+        <Method name="obtenerInscripcionesPorAlumno" returnType="List&lt;Inscripcion&gt;" visibility="public">
+          <Argument type="int" name="idAlumno"/>
+        </Method>
+        <Method name="obtenerInscripcionesPorIdAlumno" returnType="List&lt;Inscripcion&gt;" visibility="public">
+          <Argument type="int" name="idAlumno"/>
+        </Method>
+        <Method name="obtenerMateriasCursadas" returnType="List&lt;Materia&gt;" visibility="public">
+          <Argument type="int" name="idAlumno"/>
+        </Method>
+        <Method name="obtenerMateriasNOCursadas" returnType="List&lt;Materia&gt;" visibility="public">
+          <Argument type="int" name="idAlumno"/>
+        </Method>
+        <Method name="AnularInscripcion" returnType="void" visibility="public">
+          <Argument type="int" name="idAlumno"/>
+          <Argument type="int" name="idMateria"/>
+        </Method>
+        <Method name="actualizarNota" returnType="void" visibility="public">
+          <Argument type="int" name="idAlumno"/>
+          <Argument type="int" name="idMateria"/>
+          <Argument type="double" name="nota"/>
+        </Method>
+        <Method name="obtenerAlumnosXMateria" returnType="List&lt;Alumno&gt;" visibility="public">
+          <Argument type="int" name="idMateria"/>
+        </Method>
+        <Method name="obtenerAlumnosxMateria" returnType="List&lt;Alumno&gt;" visibility="public">
+          <Argument type="int" name="idMateria"/>
+        </Method>
+      </Methods>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <HasRelation name="aluData" source="persistencia.InscripcionData" target="persistencia.AlumnoData" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+  </ClassDiagramRelations>
+</ClassDiagram>
