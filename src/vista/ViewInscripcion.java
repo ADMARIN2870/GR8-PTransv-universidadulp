@@ -7,6 +7,7 @@ package vista;
 import entidades.Alumno;
 import entidades.Inscripcion;
 import entidades.Materia;
+import java.awt.HeadlessException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -185,7 +186,7 @@ public class ViewInscripcion extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(cbAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(45, 45, 45)
+                .addGap(36, 36, 36)
                 .addComponent(jLabel3)
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -198,7 +199,7 @@ public class ViewInscripcion extends javax.swing.JInternalFrame {
                     .addComponent(jbSalir)
                     .addComponent(jbAnularInscripcion)
                     .addComponent(jbInscribir))
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         pack();
@@ -208,7 +209,7 @@ public class ViewInscripcion extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         borrarFilaTabla();
         jRmateriasInscriptas.setSelected(false);
-        cargaDatosNoInscritas();
+        cargaDatosNoInscriptas();
         jbAnularInscripcion.setEnabled(false);
         jbInscribir.setEnabled(true);
 
@@ -218,7 +219,7 @@ public class ViewInscripcion extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         borrarFilaTabla();
         jRmateriasNoInscriptas.setSelected(false);
-        cargaDatosInscritas();
+        cargaDatosInscriptas();
         jbAnularInscripcion.setEnabled(true);
         jbInscribir.setEnabled(false);
 
@@ -232,23 +233,25 @@ public class ViewInscripcion extends javax.swing.JInternalFrame {
             Alumno a= (Alumno) cbAlumno.getSelectedItem();
 
             int idMateria=(Integer)modelo.getValueAt(filaSeleccionada, 0);
-            String nombreMateria=(String)modelo.getValueAt(filaSeleccionada, 1);
+            String Nombre_materia=(String)modelo.getValueAt(filaSeleccionada, 1);
             int anio= (Integer) modelo.getValueAt(filaSeleccionada, 2);
 
-            Materia m=new Materia (idMateria, nombreMateria, anio, true);
+            Materia m=new Materia (idMateria, Nombre_materia, anio, true);
 
             Inscripcion i= new Inscripcion (a ,m,0);
+            
+            try {
             inscData.guardarInscripcion(i);
             borrarFilaTabla();
             
-            try {
+            
         // Mostrar un mensaje de éxito
                 JOptionPane.showMessageDialog(this, 
                         "Inscripción exitosa.", 
                         "Éxito", 
                         JOptionPane.INFORMATION_MESSAGE);
         
-    } catch (Exception e) {
+    } catch (HeadlessException e) {
         // Manejo general de cualquier otra excepción
         JOptionPane.showMessageDialog(this, "Error inesperado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
     }
@@ -261,6 +264,9 @@ public class ViewInscripcion extends javax.swing.JInternalFrame {
         
       // Verificar si hay una inscripción activa
     if (filaSeleccionada != -1) {
+        Alumno a = (Alumno) cbAlumno.getSelectedItem();
+        int idMateria = (Integer) modelo.getValueAt(filaSeleccionada, 0);
+        
         // Mostrar un diálogo de confirmación antes de anular la inscripción
         int response = JOptionPane.showConfirmDialog(this, 
                 "¿Está seguro de que desea anular la inscripción?", 
@@ -271,13 +277,20 @@ public class ViewInscripcion extends javax.swing.JInternalFrame {
         if (response == JOptionPane.YES_OPTION) {
             // Lógica para anular la inscripción
             try {
+                // Anular la inscripción en la base de datos
+                inscData.AnularInscripcion(a.getIdAlumno(), idMateria);
+                
+                // Actualizar la tabla
+                borrarFilaTabla();
+                cargaDatosInscriptas(); // O cargaDatosNoInscriptas() si deseas recargar las no inscriptas
+                                              
               // Mostrar un mensaje de éxito
                 JOptionPane.showMessageDialog(this, 
                         "Inscripción anulada exitosamente.", 
                         "Éxito", 
                         JOptionPane.INFORMATION_MESSAGE);
                 
-              } catch (Exception e) {
+              } catch (HeadlessException e) {
                 // Manejo de errores en caso de que la anulación falle
                 JOptionPane.showMessageDialog(this, 
                         "Error al anular la inscripción: " + e.getMessage(), 
@@ -316,9 +329,9 @@ public class ViewInscripcion extends javax.swing.JInternalFrame {
 
     private void armarCabeceraTabla() {
     // Inicializa el modelo solo si no está ya inicializado
-    if (modelo == null) {
-        modelo = new DefaultTableModel();
-    }
+   // if (modelo == null) {
+     //   modelo = new DefaultTableModel();
+    //}
 
     // Agrega las columnas solo una vez
     if (modelo.getColumnCount() == 0) {
@@ -342,7 +355,7 @@ private void borrarFilaTabla() {
 }
 
     
-    private void cargaDatosNoInscritas() {
+    private void cargaDatosNoInscriptas() {
     
     Alumno selec = (Alumno) cbAlumno.getSelectedItem();
     listaMateria = inscData.obtenerMateriasNOCursadas(selec.getIdAlumno());
@@ -352,7 +365,7 @@ private void borrarFilaTabla() {
     }
 }
 
-private void cargaDatosInscritas() {
+private void cargaDatosInscriptas() {
     
     Alumno selec = (Alumno) cbAlumno.getSelectedItem();
     List<Materia> lista = (ArrayList) inscData.obtenerMateriasCursadas(selec.getIdAlumno());
@@ -362,4 +375,5 @@ private void cargaDatosInscritas() {
     }
 }
 
+    
 }

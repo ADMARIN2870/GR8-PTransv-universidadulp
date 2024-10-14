@@ -169,7 +169,6 @@ public class ViewCargaNotas extends javax.swing.JInternalFrame {
                 String notaSTR = valorNota.toString().trim();
                nota=Double.parseDouble(notaSTR);
                } catch (NumberFormatException e) {
-            // Manejar el error si la conversión falla
             JOptionPane.showMessageDialog(null, "La nota ingresada no es valida.");
             return;
         }

@@ -162,40 +162,42 @@ public class InscripcionData {
 
     // Método para obtener materias NO cursadas por un alumno
     public List<Materia> obtenerMateriasNOCursadas(int idAlumno) {
-        List<Materia> materias = new ArrayList<>();
-        String sql = "SELECT * FROM materia WHERE idMateria NOT IN (SELECT idMateria FROM inscripcion WHERE idAlumno = ?)";
-        try {
-            try (PreparedStatement statement = connection.prepareStatement(sql)) {
-                statement.setInt(1, idAlumno);
-                ResultSet resultSet = statement.executeQuery();
-                while (resultSet.next()) {
-                    Materia materia = new Materia();
-                    materia.setIdMateria(resultSet.getInt("idMateria"));
-                    materia.setNombre_materia(resultSet.getString("nombre"));
-                    materia.setAnio(resultSet.getInt("anio"));
-                    materia.setEstado(resultSet.getBoolean("estado"));
-                    materias.add(materia);
-                }
-            }
-        } catch (SQLException e) {
-            System.out.println("Error al obtener materias no cursadas: " + e.getMessage());
+    List<Materia> materias = new ArrayList<>();
+    String sql = "SELECT idmateria, Nombre_materia, año FROM materia WHERE idmateria NOT IN (SELECT idmateria FROM inscripcion WHERE idalumno = ?)";
+    try {
+        PreparedStatement ps = connection.prepareStatement(sql);
+        ps.setInt(1, idAlumno);
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            Materia materia = new Materia();
+            materia.setIdMateria(rs.getInt("idmateria"));
+            materia.setNombre_materia(rs.getString("Nombre_materia"));
+            materia.setAnio(rs.getInt("año"));
+            materias.add(materia);
         }
-        return materias;
+    } catch (SQLException ex) {
+        System.out.println("Error al obtener materias no cursadas: " + ex.getMessage());
     }
+    return materias;
+}
 
-    // Método para borrar una inscripción
-    public void borrarInscripcionMateriaAlumno(int idAlumno, int idMateria) {
-        String sql = "DELETE FROM inscripcion WHERE idAlumno = ? AND idMateria = ?";
-        try {
-            try (PreparedStatement statement = connection.prepareStatement(sql)) {
-                statement.setInt(1, idAlumno);
-                statement.setInt(2, idMateria);
-                statement.executeUpdate();
-            }
-        } catch (SQLException e) {
-            System.out.println("Error al borrar inscripción: " + e.getMessage());
-        }
+
+    // Método para Anular una inscripción
+  public void AnularInscripcion(int idAlumno, int idMateria) {
+    String sql = "DELETE FROM inscripcion WHERE idalumno = ? AND idmateria = ?";
+    try {
+        PreparedStatement ps = connection.prepareStatement(sql);
+        ps.setInt(1, idAlumno);
+        ps.setInt(2, idMateria);
+        ps.executeUpdate();
+    } catch (SQLException ex) {
+        System.out.println("Error al anular la inscripción: " + ex.getMessage());
     }
+}
+
+
+
+
 
     // Método para actualizar la nota de una inscripción
     public void actualizarNota(int idAlumno, int idMateria, double nota) {

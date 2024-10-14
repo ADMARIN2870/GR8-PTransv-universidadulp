@@ -10,6 +10,7 @@ public class ViewMateria extends javax.swing.JInternalFrame {
     
     private MateriaData matData =new MateriaData();
     private Materia materia =null;
+    private String Nombre_materia;
 
    
     public ViewMateria() {
@@ -190,7 +191,7 @@ public class ViewMateria extends javax.swing.JInternalFrame {
         
         
         try{
-            Integer codigo = Integer.parseInt(jtfCodigo.getText());
+            Integer codigo = Integer.valueOf(jtfCodigo.getText());
             Materia materia = matData.buscarMateria(codigo);
             if(materia!=null){
                 jtfNombre.setText(materia.getNombre_materia());   
@@ -218,13 +219,9 @@ public class ViewMateria extends javax.swing.JInternalFrame {
             int año = Integer.parseInt(jtfAño.getText());
             String nombre = jtfNombre.getText();
             boolean estado;
-            if (jrbEstado.isSelected()) {
-                    estado=true;
-                } else {
-                    estado=false;
-                }
+            estado = jrbEstado.isSelected();
             if(!nombre.isEmpty()){
-                 materia = new Materia(nombre,año,estado);
+                 materia = new Materia(Nombre_materia,año,estado);
                 boolean existe = matData.materiaExiste(nombre,año);
                 if(existe==true){
                     matData.guardarMateria(materia);

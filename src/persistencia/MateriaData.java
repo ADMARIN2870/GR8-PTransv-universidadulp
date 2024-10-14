@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 public class MateriaData {
     
     private Connection connection = Conexion.getConexion();
+    private Object Nombre_materia;
 
     public MateriaData(Conexion conexion) {
         connection = Conexion.getConexion();
@@ -52,7 +53,7 @@ public class MateriaData {
                 if (resultSet.next()) {
                     materia = new Materia();
                     materia.setIdMateria(resultSet.getInt("idMateria"));
-                    materia.setNombre_materia(resultSet.getString("nombre_materia"));
+                    materia.setNombre_materia(resultSet.getString("Nombre_materia"));
                     materia.setAnio(resultSet.getInt("año"));
                     materia.setEstado(resultSet.getBoolean("estado"));
                 }
@@ -66,7 +67,7 @@ public class MateriaData {
 
     // Método para modificar una materia existente
     public void modificarMateria(Materia materia) {
-        String sql = "UPDATE materia SET nombre_materia = ?, año = ?, estado = ? WHERE idMateria = ?";
+        String sql = "UPDATE materia SET Nombre_materia = ?, año = ?, estado = ? WHERE idMateria = ?";
         try {
             try (PreparedStatement statement = connection.prepareStatement(sql)) {
                 statement.setString(1, materia.getNombre_materia());
@@ -116,7 +117,7 @@ public class MateriaData {
                 while (resultSet.next()) {
                     Materia materia = new Materia();
                     materia.setIdMateria(resultSet.getInt("idMateria"));
-                    materia.setNombre_materia(resultSet.getString("nombre_materia"));
+                    materia.setNombre_materia(resultSet.getString("Nombre_materia"));
                     materia.setAnio(resultSet.getInt("año"));
                     materia.setEstado(resultSet.getBoolean("estado"));
                     materias.add(materia);
@@ -132,16 +133,16 @@ public class MateriaData {
      public boolean materiaExiste(String nombreMateria, int año){
         boolean existencia=true;
         
-        String sql ="SELECT nombre_materia, año FROM materia;";
+        String sql ="SELECT Nombre_materia, año FROM materia;";
         try{
-            PreparedStatement ps = connection.prepareStatement(sql);
-            ResultSet rs = ps.executeQuery();
-            while(rs.next()){
-                 if(rs.getString("nombre_materia").equals(nombreMateria)&&rs.getInt("año")==año){
-                    existencia=false;
-                 }
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ResultSet rs = ps.executeQuery();
+                while(rs.next()){
+                    if(rs.getString("Nombre_materia").equals(Nombre_materia)&&rs.getInt("año")==año){
+                        existencia=false;
+                    }
+                }
             }
-            ps.close();
         
         }catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, " Error al acceder a la tabla materia " + ex.getMessage());
