@@ -251,9 +251,9 @@ public class ViewInscripcion extends javax.swing.JInternalFrame {
                         "Éxito", 
                         JOptionPane.INFORMATION_MESSAGE);
         
-    } catch (HeadlessException e) {
+    } catch (NullPointerException e) {
         // Manejo general de cualquier otra excepción
-        JOptionPane.showMessageDialog(this, "Error inesperado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(this, "No se ha seleccionado ninguna materia: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
     }
         }
     }//GEN-LAST:event_jbInscribirActionPerformed

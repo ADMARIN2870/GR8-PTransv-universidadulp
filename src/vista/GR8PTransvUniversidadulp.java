@@ -1,6 +1,5 @@
-
 package vista;
-/*
+
 import entidades.*;
 import java.util.List;
 import persistencia.AlumnoData;
@@ -86,7 +85,7 @@ public class GR8PTransvUniversidadulp {
         }
     }
 }
-*/
+/*
 import javax.swing.*;
 
 public class GR8PTransvUniversidadulp {
