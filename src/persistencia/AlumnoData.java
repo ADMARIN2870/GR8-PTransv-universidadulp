@@ -1,4 +1,3 @@
-
 package persistencia;
 
 import entidades.Alumno;
@@ -11,7 +10,7 @@ public class AlumnoData {
     private Connection connection = Conexion.getConexion();
 
     public AlumnoData(Conexion conexion) {
-        connection = Conexion.getConexion();
+       this.connection = Conexion.getConexion();
     }
 
     public AlumnoData() {
@@ -196,11 +195,11 @@ public class AlumnoData {
         System.out.println("Error al eliminar el alumno: " + e.getMessage());
     }
 }
-
+/*
     public Alumno buscarAlumnoPorNombreApellido(String nombreAlumno, String apellidoAlumno) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new UnsupportedOperationException("Not supported yet."); 
     }
-    
+  */  
     public boolean dniExiste(int dni){
         boolean existencia=true;
         
@@ -221,7 +220,7 @@ public class AlumnoData {
         }
         return existencia;
     }
-
+/*
    public Alumno buscarAlumno(Object id) {
         if (id instanceof Integer integer) {  // Verifica que el ID sea un número entero
             return buscarAlumnoPorId(integer);  // Llama al método ya implementado para buscar por ID
@@ -229,8 +228,7 @@ public class AlumnoData {
             throw new IllegalArgumentException("El tipo de ID proporcionado no es válido.");
         }
     }
-
-    
+    /*
     public List<Alumno> listarAlumnos() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
@@ -238,6 +236,5 @@ public class AlumnoData {
     public Alumno buscarAlumnoporIdbuscarAlumnoPorDni(int id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
- 
-
+ */
 }

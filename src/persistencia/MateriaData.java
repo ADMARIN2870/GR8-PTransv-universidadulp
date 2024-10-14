@@ -1,5 +1,3 @@
-
-
 package persistencia;
 
 import entidades.Materia;
@@ -11,10 +9,11 @@ import javax.swing.JOptionPane;
 public class MateriaData {
     
     private Connection connection = Conexion.getConexion();
-    private Object Nombre_materia;
+    private Object nombre_materia;
+    
 
     public MateriaData(Conexion conexion) {
-        connection = Conexion.getConexion();
+        this.connection = Conexion.getConexion();
     }
 
     public MateriaData() {
@@ -22,24 +21,34 @@ public class MateriaData {
     }
 
     // Método para guardar una nueva materia en la base de datos
-    public void guardarMateria(Materia materia) {
-        String sql = "INSERT INTO materia (nombre_materia, año, estado) VALUES (?, ?, ?)";
-        try {
-            try (PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-                statement.setString(1, materia.getNombre_materia());
-                statement.setInt(2, materia.getAnio());
-                statement.setBoolean(3, materia.isEstado());
-                
-                statement.executeUpdate();
-                ResultSet rs = statement.getGeneratedKeys();
-                if (rs.next()) {
-                    materia.setIdMateria(rs.getInt(1));
-                }
-            }
-        } catch (SQLException e) {
-            System.out.println("Error al guardar la materia: " + e.getMessage());
-        }
+   public void guardarMateria(Materia materia) {
+    // Validación para evitar que el nombre de la materia sea nulo o vacío
+    if (materia.getNombre_materia() == null || materia.getNombre_materia().trim().isEmpty()) {
+        System.out.println("Error: El nombre de la materia no puede estar vacío o ser nulo.");
+        return; // Si es nulo o vacío, se sale del método sin intentar guardar
     }
+
+    // Imprime el nombre de la materia para verificar su valor
+    System.out.println("Nombre de la materia a guardar: " + materia.getNombre_materia());
+
+    String sql = "INSERT INTO materia (nombre_materia, año, estado) VALUES (?, ?, ?)";
+    try {
+        try (PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+            statement.setString(1, materia.getNombre_materia());  // Asigna el nombre de la materia
+            statement.setInt(2, materia.getAnio());               // Asigna el año de la materia
+            statement.setBoolean(3, materia.isEstado());          // Asigna el estado de la materia
+
+            statement.executeUpdate(); // Ejecuta la inserción
+            ResultSet rs = statement.getGeneratedKeys();  // Obtiene el ID generado
+            if (rs.next()) {
+                materia.setIdMateria(rs.getInt(1));  // Asigna el ID generado al objeto Materia
+            }
+        }
+    } catch (SQLException e) {
+        System.out.println("Error al guardar la materia: " + e.getMessage());
+    }
+}
+
 
     // Método para buscar una materia por su ID
     public Materia buscarMateria(int id) {
@@ -53,8 +62,8 @@ public class MateriaData {
                 if (resultSet.next()) {
                     materia = new Materia();
                     materia.setIdMateria(resultSet.getInt("idMateria"));
-                    materia.setNombre_materia(resultSet.getString("Nombre_materia"));
-                    materia.setAnio(resultSet.getInt("año"));
+                    materia.setNombre_materia(resultSet.getString("nombre_materia"));
+                    materia.setAnio(resultSet.getInt("anio"));
                     materia.setEstado(resultSet.getBoolean("estado"));
                 }
             }
@@ -67,10 +76,10 @@ public class MateriaData {
 
     // Método para modificar una materia existente
     public void modificarMateria(Materia materia) {
-        String sql = "UPDATE materia SET Nombre_materia = ?, año = ?, estado = ? WHERE idMateria = ?";
+        String sql = "UPDATE materia SET nombre_materia = ?, año = ?, estado = ? WHERE idMateria = ?";
         try {
             try (PreparedStatement statement = connection.prepareStatement(sql)) {
-                statement.setString(1, materia.getNombre_materia());
+                statement.setString(1, (String) materia.getNombre_materia());
                 statement.setInt(2, materia.getAnio());
                 statement.setBoolean(3, materia.isEstado());
                 statement.setInt(4, materia.getIdMateria());
@@ -117,7 +126,7 @@ public class MateriaData {
                 while (resultSet.next()) {
                     Materia materia = new Materia();
                     materia.setIdMateria(resultSet.getInt("idMateria"));
-                    materia.setNombre_materia(resultSet.getString("Nombre_materia"));
+                    materia.setNombre_materia(resultSet.getString("nombre_materia"));
                     materia.setAnio(resultSet.getInt("año"));
                     materia.setEstado(resultSet.getBoolean("estado"));
                     materias.add(materia);
@@ -138,7 +147,7 @@ public class MateriaData {
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ResultSet rs = ps.executeQuery();
                 while(rs.next()){
-                    if(rs.getString("Nombre_materia").equals(Nombre_materia)&&rs.getInt("año")==año){
+                if(rs.getString("Nombre_materia").equals(nombre_materia)&&rs.getInt("año")==año){
                         existencia=false;
                     }
                 }
