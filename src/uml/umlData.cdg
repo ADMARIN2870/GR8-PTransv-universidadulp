@@ -2,7 +2,7 @@
 
 <ClassDiagram name="Multi-file class diagram">
   <ClassDiagramComponents>
-    <Class name="AlumnoData" package="persistencia" visibility="public" xPosition="857.0" yPosition="208.0">
+    <Class name="AlumnoData" package="persistencia" visibility="public" xPosition="1228.0" yPosition="47.0">
       <Fields>
         <Field name="connection" type="Connection" visibility="private"/>
       </Fields>
@@ -37,7 +37,7 @@
         </Method>
       </Methods>
     </Class>
-    <Class name="Conexion" package="persistencia" visibility="public" xPosition="495.0" yPosition="52.0">
+    <Class name="Conexion" package="persistencia" visibility="public" xPosition="569.0" yPosition="12.0">
       <Fields>
         <Field name="URL" type="String" visibility="private" isStatic="true" isFinal="true"/>
         <Field name="DB" type="String" visibility="private" isStatic="true" isFinal="true"/>
@@ -54,7 +54,7 @@
         <Method name="getConexion" returnType="Connection" visibility="public" isStatic="true"/>
       </Methods>
     </Class>
-    <Class name="InscripcionData" package="persistencia" visibility="public" xPosition="177.0" yPosition="106.0">
+    <Class name="InscripcionData" package="persistencia" visibility="public" xPosition="499.0" yPosition="318.0">
       <Fields>
         <Field name="connection" type="Connection" visibility="private" isFinal="true"/>
         <Field name="matData" type="MateriaData" visibility="private"/>
@@ -105,7 +105,7 @@
         </Method>
       </Methods>
     </Class>
-    <Class name="MateriaData" package="" visibility="public" xPosition="81.0" yPosition="61.0">
+    <Class name="MateriaData" package="" visibility="public" xPosition="62.0" yPosition="12.0">
       <Fields>
         <Field name="connection" type="Connection" visibility="private"/>
       </Fields>
@@ -134,7 +134,7 @@
     </Class>
   </ClassDiagramComponents>
   <ClassDiagramRelations>
-    <HasRelation name="aluData" source="persistencia.InscripcionData" target="persistencia.AlumnoData" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
     <HasRelation name="matData" source="persistencia.InscripcionData" target="MateriaData" type="Aggregation" sourceCardinality="0..1" targetCardinality="1..1"/>
+    <HasRelation name="aluData" source="persistencia.InscripcionData" target="persistencia.AlumnoData" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
   </ClassDiagramRelations>
 </ClassDiagram>
